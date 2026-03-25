@@ -1302,79 +1302,17 @@
       color: var(--bright);
     }
 
-    /* Contact Form */
+    /* Contact Links */
     .contact-form {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius-lg);
       padding: 2.5rem;
     }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .contact-cta-link:hover {
+      background: rgba(255,255,255,0.14) !important;
+      transform: translateY(-2px);
     }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-    .form-group label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-    }
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius);
-      padding: 0.85rem 1rem;
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.95rem;
-      color: var(--white);
-      outline: none;
-      transition: border-color 0.2s, background 0.2s;
-      width: 100%;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255,255,255,0.2);
-    }
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: rgba(82,183,136,0.5);
-      background: rgba(82,183,136,0.06);
-    }
-    .form-group textarea { resize: vertical; min-height: 110px; }
-    .form-group select option { background: var(--forest); color: var(--white); }
-    .form-submit {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: var(--gold);
-      color: var(--deep);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.95rem 2rem;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      width: 100%;
-      justify-content: center;
-    }
-    .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
 
     /* ───────────────────────────────── FOOTER */
     #footer {
@@ -1481,9 +1419,7 @@
       .gallery-item:nth-child(5) { grid-column: span 2; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr 1fr; }
-      #training, #why, #events, #gallery, #membership, #contact { padding: 5rem 0; }
+      #training, #why, #events, #gallery, #contact { padding: 5rem 0; }
     }
 
     @media (max-width: 480px) {
@@ -1579,11 +1515,9 @@
       <ul class="nav-links">
         <li><a href="#training">Training</a></li>
         <li><a href="#why">About</a></li>
-        <li><a href="#events">Events</a></li>
+        <li><a href="#events">News</a></li>
         <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#membership">Membership</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#membership" class="nav-cta">Join Us</a></li>
       </ul>
 
       <div class="hamburger" id="hamburger" aria-label="Menu">
@@ -1596,11 +1530,9 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#training" class="mob-link">Training</a>
     <a href="#why" class="mob-link">About</a>
-    <a href="#events" class="mob-link">Events</a>
+    <a href="#events" class="mob-link">News</a>
     <a href="#gallery" class="mob-link">Gallery</a>
-    <a href="#membership" class="mob-link">Membership</a>
     <a href="#contact" class="mob-link">Contact</a>
-    <a href="#membership" class="mob-cta mob-link">Join Us</a>
   </div>
 
   <!-- ═══════════════════════ HERO -->
@@ -1625,8 +1557,8 @@
       </p>
 
       <div class="hero-ctas">
-        <a href="#membership" class="btn-primary">
-          Join the Club
+        <a href="#contact" class="btn-primary">
+          Get In Touch
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -1857,35 +1789,34 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════ EVENTS -->
+  <!-- ═══════════════════════ NEWS -->
   <section id="events">
     <div class="container">
       <div class="events-header">
         <div>
-          <div class="section-label">On the calendar</div>
-          <h2 class="section-heading reveal">Upcoming<br/>Events</h2>
+          <div class="section-label">Latest from CPH Touch</div>
+          <h2 class="section-heading reveal">Latest<br/>News</h2>
         </div>
         <p class="reveal reveal-delay-1" style="max-width:340px; color:var(--text-mid); font-size:1rem; line-height:1.7;">
-          From national trials to cross-border tournaments — there's always something to play for.
+          Tournaments, training updates, and stories from Copenhagen's touch rugby community.
         </p>
       </div>
 
       <div class="events-grid">
-        <!-- DK Touch Trials -->
+        <!-- Post 3 — Summer Sessions Are Back! (Mar 2026) -->
         <div class="event-card featured reveal">
           <div class="event-art">
             <div class="event-art-bg art-dk"></div>
-            <div class="event-date-pill">Spring 2026</div>
-            <div class="event-location-pill">📍 Copenhagen, DK</div>
+            <div class="event-date-pill">Mar 2026</div>
           </div>
           <div class="event-body">
-            <div class="event-type">National Tournament</div>
-            <h3>DK Touch Trials</h3>
-            <p>The annual national touch rugby trials — where Denmark's best compete for places on the national squad. CPH Touch players have represented Denmark at European and World level. Could you be next?</p>
+            <div class="event-type">Training</div>
+            <h3>Summer Sessions Are Back!</h3>
+            <p>The days are getting longer and that means one thing — Wednesday sessions are back! Starting this April, we'll be running our summer schedule with sessions on both Sundays and Wednesdays in Fælledparken.</p>
             <div class="event-footer">
-              <span class="event-tag">🏆 National</span>
-              <a href="#contact" class="event-link">
-                Find out more
+              <span class="event-tag">🏉 Training</span>
+              <a href="blog.html" class="event-link">
+                Read more
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1894,21 +1825,20 @@
           </div>
         </div>
 
-        <!-- Touchtober -->
+        <!-- Post 4 — DK Touch Trials (Feb 2026) -->
         <div class="event-card reveal reveal-delay-1">
           <div class="event-art">
             <div class="event-art-bg art-sweden"></div>
-            <div class="event-date-pill">Oct 2026</div>
-            <div class="event-location-pill">📍 Sweden</div>
+            <div class="event-date-pill">Feb 2026</div>
           </div>
           <div class="event-body">
-            <div class="event-type">International Tournament</div>
-            <h3>Touchtober</h3>
-            <p>Cross the bridge to Sweden for one of Scandinavia's most fun touch rugby festivals. Great rugby, great atmosphere.</p>
+            <div class="event-type">Tournament</div>
+            <h3>DK Touch Trials: Represent Your Country</h3>
+            <p>The annual Danish Touch trials are coming up this spring. This is your chance to put on the national jersey and represent Denmark at European and World level.</p>
             <div class="event-footer">
-              <span class="event-tag">🌍 International</span>
-              <a href="#contact" class="event-link">
-                Register interest
+              <span class="event-tag">🏆 Tournament</span>
+              <a href="blog.html" class="event-link">
+                Read more
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1917,26 +1847,20 @@
           </div>
         </div>
 
-        <!-- More coming -->
+        <!-- Post 1 — Touchtober 2025 (Oct 2025) -->
         <div class="event-card reveal reveal-delay-2">
           <div class="event-art">
-            <div class="event-art-bg art-more">
-              <div class="art-more-inner">
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <circle cx="24" cy="24" r="23" stroke="white" stroke-width="1.5"/>
-                  <path d="M24 16v16M16 24h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </div>
-            </div>
+            <div class="event-art-bg art-more" style="background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 30%, #40916c 60%, #74c69d 100%);"></div>
+            <div class="event-date-pill">Oct 2025</div>
           </div>
           <div class="event-body">
-            <div class="event-type">More Events</div>
-            <h3>More To Come</h3>
-            <p>More tournaments and socials throughout the year. Follow us or get in touch to stay in the loop.</p>
+            <div class="event-type">Tournament</div>
+            <h3>Touchtober 2025: What a Weekend!</h3>
+            <p>CPH Touch travelled to Sweden for Touchtober 2025 and what a tournament it was. Over 20 teams from across Scandinavia battled it out in Malmö.</p>
             <div class="event-footer">
-              <span class="event-tag">📅 2026</span>
-              <a href="#contact" class="event-link">
-                Stay updated
+              <span class="event-tag">🌍 Tournament</span>
+              <a href="blog.html" class="event-link">
+                Read more
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -1944,6 +1868,15 @@
             </div>
           </div>
         </div>
+      </div>
+
+      <div style="text-align:center; margin-top:3rem;">
+        <a href="blog.html" class="btn-primary" style="background:var(--primary); box-shadow:0 0 30px rgba(45,106,79,0.25);">
+          View All Posts
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -2015,69 +1948,7 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════ MEMBERSHIP -->
-  <section id="membership">
-    <div class="container">
-      <div class="membership-inner">
-        <div class="membership-text">
-          <div class="section-label">Become a member</div>
-          <h2 class="section-heading reveal">Join CPH<br/>Touch</h2>
 
-          <p class="reveal reveal-delay-1">
-            Membership gives you access to all regular training sessions, club events, and the chance to represent CPH Touch at tournaments across Scandinavia and beyond.
-          </p>
-          <p class="reveal reveal-delay-2">
-            New to the sport? Come to three free trial sessions before committing. We want you to love touch rugby as much as we do.
-          </p>
-
-          <div class="membership-includes reveal reveal-delay-2">
-            <div class="include-item">Access to all weekly training sessions</div>
-            <div class="include-item">Club jersey &amp; membership card</div>
-            <div class="include-item">Priority spots on tournament teams</div>
-            <div class="include-item">Access to club social events</div>
-            <div class="include-item">3 free trial sessions for new players</div>
-            <div class="include-item">Club discount at partner venues</div>
-          </div>
-        </div>
-
-        <div class="price-card reveal reveal-delay-1">
-          <div class="price-card-header">
-            <div class="price-tier">Annual Membership</div>
-            <div class="price-amount">
-              <span class="price-currency">DKK</span>
-              <span class="price-num">500</span>
-              <span class="price-period">/ year</span>
-            </div>
-          </div>
-          <div class="price-card-body">
-            <p style="font-size:0.9rem; color:var(--text-mid); margin-bottom:1.25rem; line-height:1.6;">
-              Pay once for the full season. No monthly fees, no hidden costs. Just turn up and play.
-            </p>
-
-            <div class="payment-method">
-              <div class="pay-icon">📱</div>
-              <div>
-                <div class="pay-label">MobilePay</div>
-                <div class="pay-detail">Send to: <strong>#XXXXXX</strong> — include your full name</div>
-              </div>
-            </div>
-
-            <div class="payment-method">
-              <div class="pay-icon">🏦</div>
-              <div>
-                <div class="pay-label">Bank Transfer</div>
-                <div class="pay-detail">Reg: XXXX &nbsp;·&nbsp; Konto: XXXXXXXXXX<br/>Reference: Your name + "membership"</div>
-              </div>
-            </div>
-
-            <a href="#contact" class="price-cta">
-              Register Interest →
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════════════ CONTACT -->
   <section id="contact">
@@ -2095,7 +1966,7 @@
               <div class="contact-detail-icon">📧</div>
               <div class="contact-detail-text">
                 <strong>Email</strong>
-                <span>info@cphtouch.dk</span>
+                <span>copenhagentouchrugby@gmail.com</span>
               </div>
             </div>
             <div class="contact-detail">
@@ -2115,64 +1986,48 @@
           </div>
 
           <div class="social-links reveal reveal-delay-2">
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a href="https://www.instagram.com/copenhagentouchrugby" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
-            <a href="#" class="social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/groups/copenhagentouchrugby" class="social-link" aria-label="Facebook" target="_blank" rel="noopener">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-            <a href="#" class="social-link" aria-label="Twitter/X">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </a>
           </div>
         </div>
 
-        <div class="contact-form reveal reveal-delay-1">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label>
-              <input type="text" placeholder="Alex" />
+        <div class="contact-form reveal reveal-delay-1" style="display:flex; flex-direction:column; gap:1.5rem; justify-content:center;">
+          <h3 style="font-family:'Bebas Neue','Barlow Condensed',sans-serif; font-size:1.8rem; letter-spacing:0.04em; text-transform:uppercase; color:var(--pale);">Get In Touch</h3>
+          <p style="color:var(--text-light); font-size:0.95rem; line-height:1.7; opacity:0.8;">
+            Reach out through any of the channels below — we'd love to hear from you.
+          </p>
+
+          <a href="https://www.facebook.com/groups/copenhagentouchrugby" target="_blank" rel="noopener" class="contact-cta-link" style="display:flex; align-items:center; gap:1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:1.25rem 1.5rem; color:var(--pale); transition:background 0.2s, transform 0.15s; text-decoration:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--bright)"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            <div>
+              <strong style="font-family:'Barlow Condensed',sans-serif; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase;">Facebook Group</strong><br/>
+              <span style="font-size:0.85rem; opacity:0.7;">Join our community group</span>
             </div>
-            <div class="form-group">
-              <label>Last Name</label>
-              <input type="text" placeholder="Jensen" />
+          </a>
+
+          <a href="https://www.instagram.com/copenhagentouchrugby" target="_blank" rel="noopener" class="contact-cta-link" style="display:flex; align-items:center; gap:1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:1.25rem 1.5rem; color:var(--pale); transition:background 0.2s, transform 0.15s; text-decoration:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--bright)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            <div>
+              <strong style="font-family:'Barlow Condensed',sans-serif; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase;">Instagram</strong><br/>
+              <span style="font-size:0.85rem; opacity:0.7;">Follow us @copenhagentouchrugby</span>
             </div>
-          </div>
+          </a>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" placeholder="your@email.com" />
-          </div>
-
-          <div class="form-group">
-            <label>I'm interested in…</label>
-            <select>
-              <option value="">Select an option</option>
-              <option>Joining as a new player</option>
-              <option>Annual membership</option>
-              <option>Upcoming tournaments</option>
-              <option>General question</option>
-              <option>Sponsorship / partnership</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Message</label>
-            <textarea placeholder="Tell us a bit about yourself and what brings you to CPH Touch…"></textarea>
-          </div>
-
-          <button class="form-submit" type="button" onclick="handleFormSubmit(this)">
-            Send Message
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          <a href="mailto:copenhagentouchrugby@gmail.com" class="contact-cta-link" style="display:flex; align-items:center; gap:1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius); padding:1.25rem 1.5rem; color:var(--pale); transition:background 0.2s, transform 0.15s; text-decoration:none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--bright)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+            <div>
+              <strong style="font-family:'Barlow Condensed',sans-serif; font-size:0.95rem; letter-spacing:0.08em; text-transform:uppercase;">Email Us</strong><br/>
+              <span style="font-size:0.85rem; opacity:0.7;">copenhagentouchrugby@gmail.com</span>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -2194,7 +2049,7 @@
           <ul>
             <li><a href="#training">Training</a></li>
             <li><a href="#why">About</a></li>
-            <li><a href="#events">Events</a></li>
+            <li><a href="#events">News</a></li>
             <li><a href="#gallery">Gallery</a></li>
           </ul>
         </div>
@@ -2202,7 +2057,6 @@
         <div class="footer-col">
           <h4>Club</h4>
           <ul>
-            <li><a href="#membership">Membership</a></li>
             <li><a href="#contact">Contact</a></li>
             <li><a href="#">Code of Conduct</a></li>
             <li><a href="#">Privacy Policy</a></li>
@@ -2212,10 +2066,9 @@
         <div class="footer-col">
           <h4>Connect</h4>
           <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter / X</a></li>
-            <li><a href="mailto:info@cphtouch.dk">Email us</a></li>
+            <li><a href="https://www.instagram.com/copenhagentouchrugby" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/groups/copenhagentouchrugby" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="mailto:copenhagentouchrugby@gmail.com">Email us</a></li>
           </ul>
         </div>
       </div>
@@ -2415,7 +2268,7 @@
     document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
 
     // ── ACTIVE NAV link on scroll
-    const sections = ['hero','training','why','events','gallery','membership','contact'];
+    const sections = ['hero','training','why','events','gallery','contact'];
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2433,19 +2286,6 @@
       if (el) sectionObserver.observe(el);
     });
 
-    // ── FORM SUBMIT (demo)
-    function handleFormSubmit(btn) {
-      btn.textContent = '✓  Message Sent!';
-      btn.style.background = 'var(--bright)';
-      btn.style.color = 'white';
-      btn.disabled = true;
-      setTimeout(() => {
-        btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-        btn.style.background = '';
-        btn.style.color = '';
-        btn.disabled = false;
-      }, 3000);
-    }
   </script>
 </body>
 </html>

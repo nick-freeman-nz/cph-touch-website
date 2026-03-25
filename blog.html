@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News | CPH Touch — Copenhagen Touch Rugby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ───────────────────────────────── VARIABLES */
+    :root {
+      --deep:    #071510;
+      --forest:  #0d2818;
+      --dark:    #1a3a2a;
+      --primary: #2d6a4f;
+      --mid:     #40916c;
+      --bright:  #52b788;
+      --light:   #74c69d;
+      --mint:    #b7e4c7;
+      --pale:    #e9f7ee;
+      --cream:   #f4faf6;
+      --white:   #ffffff;
+      --gold:    #e8a020;
+      --gold-lt: #f5c052;
+      --text-dark: #0d2818;
+      --text-mid:  #2d5042;
+      --text-light:#e0f0e7;
+      --radius:  12px;
+      --radius-lg: 20px;
+      --nav-h:   72px;
+    }
+
+    /* ───────────────────────────────── RESET */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ───────────────────────────────── SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--bright); border-radius: 3px; }
+
+    /* ───────────────────────────────── UTILITY */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bright);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 2px;
+      background: var(--bright);
+    }
+    .section-heading {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* ───────────────────────────────── NAV */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      background: rgba(7, 21, 16, 0.95);
+      backdrop-filter: blur(18px) saturate(1.5);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .logo-icon {
+      height: 52px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 8px;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-links a.active {
+      color: rgba(255,255,255,0.95);
+    }
+    .nav-cta {
+      margin-left: 0.75rem;
+      background: var(--gold) !important;
+      color: var(--deep) !important;
+      border-radius: 6px !important;
+      padding: 0.5rem 1.25rem !important;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-lt) !important;
+      transform: translateY(-1px);
+    }
+
+    /* ───────────────────────────────── PAGE HEADER */
+    .page-header {
+      padding-top: calc(var(--nav-h) + 4rem);
+      padding-bottom: 3rem;
+      background: var(--deep);
+      text-align: center;
+    }
+    .page-header h1 {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 1rem;
+    }
+    .page-header p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.5);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ───────────────────────────────── BLOG GRID */
+    .blog-section {
+      padding: 4rem 0 6rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    /* ───────────────────────────────── BLOG CARD */
+    .blog-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      box-shadow: 0 8px 48px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+    }
+    .blog-card-accent {
+      height: 6px;
+      width: 100%;
+    }
+    .accent-green  { background: linear-gradient(90deg, var(--primary), var(--bright)); }
+    .accent-gold   { background: linear-gradient(90deg, var(--gold), var(--gold-lt)); }
+    .accent-dark   { background: linear-gradient(90deg, var(--dark), var(--mid)); }
+    .accent-mint   { background: linear-gradient(90deg, var(--mid), var(--light)); }
+    .accent-forest { background: linear-gradient(90deg, var(--forest), var(--primary)); }
+
+    .blog-card-body {
+      padding: 1.75rem 1.75rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .blog-date-pill {
+      background: var(--gold);
+      color: var(--deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+    .blog-category {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .blog-card-body h3 {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+    .blog-card-body p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      flex: 1;
+    }
+    .blog-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--pale);
+    }
+    .blog-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--pale);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+    .blog-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .blog-link:hover { color: var(--primary); gap: 0.6rem; }
+
+    /* ───────────────────────────────── FOOTER */
+    #footer {
+      background: var(--deep);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .logo-icon-footer {
+      height: 64px;
+      width: auto;
+      border-radius: 10px;
+      display: block;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.35);
+      margin-top: 1rem;
+      max-width: 260px;
+    }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--bright); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-bottom p strong { color: rgba(255,255,255,0.35); }
+
+    /* ───────────────────────────────── RESPONSIVE */
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: 1fr 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 480px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="CPH Logo 2.png" alt="Copenhagen Touch Rugby" class="logo-icon" />
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#training">Training</a></li>
+        <li><a href="index.html#why">About</a></li>
+        <li><a href="blog.html" class="active">News</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════ PAGE HEADER -->
+  <header class="page-header">
+    <div class="container">
+      <div class="section-label" style="justify-content:center; color:var(--mint);">CPH Touch Blog</div>
+      <h1>News &amp; Updates</h1>
+      <p>Tournaments, training updates, and stories from Copenhagen's touch rugby community.</p>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════ BLOG GRID -->
+  <section class="blog-section">
+    <div class="container">
+      <div class="blog-grid">
+
+        <!-- Post 3 — Summer Sessions Are Back! (Mar 2026) -->
+        <div class="blog-card">
+          <div class="blog-card-accent accent-green"></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-date-pill">Mar 2026</span>
+              <span class="blog-category">Training</span>
+            </div>
+            <h3>Summer Sessions Are Back!</h3>
+            <p>The days are getting longer and that means one thing — Wednesday sessions are back! Starting this April, we'll be running our summer schedule with sessions on both Sundays (10:30, all year round) and Wednesdays (17:30, summer time) in Fælledparken. Whether you're a seasoned player or picking up a ball for the first time, everyone's welcome.</p>
+            <div class="blog-card-footer">
+              <span class="blog-tag">🏉 Training</span>
+              <a href="#" class="blog-link">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 4 — DK Touch Trials (Feb 2026) -->
+        <div class="blog-card">
+          <div class="blog-card-accent accent-gold"></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-date-pill">Feb 2026</span>
+              <span class="blog-category">Tournament</span>
+            </div>
+            <h3>DK Touch Trials: Represent Your Country</h3>
+            <p>The annual Danish Touch trials are coming up this spring. This is your chance to put on the national jersey and represent Denmark at European and World level. CPH Touch has a proud history of national team players. Talk to us at training if you're interested in trialling.</p>
+            <div class="blog-card-footer">
+              <span class="blog-tag">🏆 Tournament</span>
+              <a href="#" class="blog-link">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 5 — New Season, New Faces (Jan 2026) -->
+        <div class="blog-card">
+          <div class="blog-card-accent accent-mint"></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-date-pill">Jan 2026</span>
+              <span class="blog-category">Club News</span>
+            </div>
+            <h3>New Season, New Faces</h3>
+            <p>2026 is shaping up to be our biggest year yet. We've welcomed a wave of new players from all over the world — from New Zealand to Norway, Brazil to Birmingham. The beauty of touch is that it doesn't matter where you're from or what your experience level is. See you in the park!</p>
+            <div class="blog-card-footer">
+              <span class="blog-tag">📣 Club News</span>
+              <a href="#" class="blog-link">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 1 — Touchtober 2025 (Oct 2025) -->
+        <div class="blog-card">
+          <div class="blog-card-accent accent-dark"></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-date-pill">Oct 2025</span>
+              <span class="blog-category">Tournament</span>
+            </div>
+            <h3>Touchtober 2025: What a Weekend!</h3>
+            <p>CPH Touch travelled to Sweden for Touchtober 2025 and what a tournament it was. Over 20 teams from across Scandinavia battled it out in Malmö. Our mixed team made it to the quarter-finals and the social afterwards was legendary. Already counting down to next year!</p>
+            <div class="blog-card-footer">
+              <span class="blog-tag">🌍 Tournament</span>
+              <a href="#" class="blog-link">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 2 — CPH Touch: How It All Started (Est. 2011) -->
+        <div class="blog-card">
+          <div class="blog-card-accent accent-forest"></div>
+          <div class="blog-card-body">
+            <div class="blog-card-meta">
+              <span class="blog-date-pill">Est. 2011</span>
+              <span class="blog-category">Club History</span>
+            </div>
+            <h3>CPH Touch: How It All Started</h3>
+            <p>It started with a few mates in Fælledparken with a ball and a dream. Back in 2011, touch rugby in Denmark was virtually non-existent. A small group of expats and locals decided to change that. From those first Sunday sessions with 6 players, CPH Touch has grown into one of Scandinavia's most active touch rugby communities with 55+ regular players.</p>
+            <div class="blog-card-footer">
+              <span class="blog-tag">📖 History</span>
+              <a href="#" class="blog-link">
+                Read more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="margin-bottom:0.5rem;">
+            <img src="CPH Logo 2.png" alt="Copenhagen Touch Rugby" class="logo-icon-footer" />
+          </a>
+          <p>Copenhagen's touch rugby community. All levels, all nationalities, all welcome. Come play with us.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#training">Training</a></li>
+            <li><a href="index.html#why">About</a></li>
+            <li><a href="blog.html">News</a></li>
+            <li><a href="index.html#gallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Club</h4>
+          <ul>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="https://www.instagram.com/copenhagentouchrugby" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/groups/copenhagentouchrugby" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="mailto:copenhagentouchrugby@gmail.com">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 <strong>CPH Touch Rugby Club</strong>. All rights reserved.</p>
+        <p>Made with &hearts; in Copenhagen</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
