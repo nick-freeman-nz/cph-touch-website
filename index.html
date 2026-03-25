@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CPH Touch | Copenhagen Touch Rugby</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ───────────────────────────────── VARIABLES */
+    :root {
+      --deep:    #071510;
+      --forest:  #0d2818;
+      --dark:    #1a3a2a;
+      --primary: #2d6a4f;
+      --mid:     #40916c;
+      --bright:  #52b788;
+      --light:   #74c69d;
+      --mint:    #b7e4c7;
+      --pale:    #e9f7ee;
+      --cream:   #f4faf6;
+      --white:   #ffffff;
+      --gold:    #e8a020;
+      --gold-lt: #f5c052;
+      --text-dark: #0d2818;
+      --text-mid:  #2d5042;
+      --text-light:#e0f0e7;
+      --radius:  12px;
+      --radius-lg: 20px;
+      --nav-h:   72px;
+    }
+
+    /* ───────────────────────────────── RESET */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ───────────────────────────────── SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--bright); border-radius: 3px; }
+
+    /* ───────────────────────────────── UTILITY */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--bright);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 2px;
+      background: var(--bright);
+    }
+    .section-label.light { color: var(--mint); }
+    .section-label.light::before { background: var(--mint); }
+
+    .section-heading {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ───────────────────────────────── NAV */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 1000;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(7, 21, 16, 0.88);
+      backdrop-filter: blur(18px) saturate(1.5);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Logo */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+    .logo-icon {
+      height: 52px;
+      width: auto;
+      flex-shrink: 0;
+      border-radius: 8px;
+      display: block;
+    }
+    .logo-icon-footer {
+      height: 64px;
+      width: auto;
+      border-radius: 10px;
+      display: block;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-cph {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: 0.55rem;
+      letter-spacing: 0.3em;
+      color: var(--mint);
+      text-transform: uppercase;
+    }
+
+    /* Nav links */
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 0.5rem 0.9rem;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+    .nav-cta {
+      margin-left: 0.75rem;
+      background: var(--gold) !important;
+      color: var(--deep) !important;
+      border-radius: 6px !important;
+      padding: 0.5rem 1.25rem !important;
+      font-weight: 700 !important;
+      transition: background 0.2s, transform 0.15s !important;
+    }
+    .nav-cta:hover {
+      background: var(--gold-lt) !important;
+      transform: translateY(-1px);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: rgba(7, 21, 16, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--bright); }
+    .mobile-menu .mob-cta {
+      margin-top: 1rem;
+      background: var(--gold);
+      color: var(--deep) !important;
+      padding: 0.75rem 2.5rem;
+      border-radius: 8px;
+      font-size: 1.5rem !important;
+    }
+
+    /* ───────────────────────────────── HERO */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      background: var(--deep);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('Touchtober 2025/Teamphoto.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.26;
+      pointer-events: none;
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(40, 115, 80, 0.35) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(20, 80, 50, 0.4) 0%, transparent 55%),
+        linear-gradient(160deg, rgba(7,21,16,0.82) 0%, rgba(13,40,24,0.78) 45%, rgba(7,21,16,0.85) 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem;
+      padding-top: var(--nav-h);
+      padding-bottom: 8rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(82, 183, 136, 0.4);
+      border-radius: 100px;
+      padding: 0.35rem 1.1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bright);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+      background: rgba(82, 183, 136, 0.08);
+      animation: fadeInDown 0.8s ease 0.2s both;
+    }
+    .hero-badge .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--bright);
+      animation: pulse-dot 2s infinite;
+    }
+
+    .hero-logo {
+      animation: fadeInUp 0.9s ease 0.35s both;
+      margin-bottom: 0.5rem;
+    }
+    .hero-logo img {
+      width: clamp(200px, 35vw, 380px);
+      height: auto;
+      border-radius: 16px;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 8px 40px rgba(0,0,0,0.5));
+    }
+    .hero-title .green-line {
+      display: block;
+      background: linear-gradient(90deg, var(--bright) 0%, var(--light) 50%, var(--mid) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title .italic-line {
+      display: block;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.55em;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.15em;
+      -webkit-text-fill-color: rgba(255,255,255,0.35);
+      background: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      margin-top: 0.15em;
+    }
+
+    .hero-tagline {
+      margin-top: 1.5rem;
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+      animation: fadeInUp 0.9s ease 0.5s both;
+    }
+    .hero-tagline strong {
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      animation: fadeInUp 0.9s ease 0.65s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold);
+      color: var(--deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.25rem;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 30px rgba(232, 160, 32, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--gold-lt);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 40px rgba(232, 160, 32, 0.5);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.8);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.25rem;
+      border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      backdrop-filter: blur(4px);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.7);
+      color: var(--white);
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* scroll indicator */
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeIn 1s ease 1.2s both;
+      z-index: 2;
+    }
+    .hero-scroll span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+      animation: scroll-drop 1.8s ease infinite;
+    }
+
+    /* grass wave bottom */
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      z-index: 1;
+    }
+
+    /* ───────────────────────────────── STATS */
+    #stats {
+      background: var(--forest);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #stats::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(82, 183, 136, 0.04), transparent);
+    }
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      divide-x: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-item {
+      padding: 2.5rem 2rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1;
+      background: linear-gradient(135deg, var(--bright) 0%, var(--light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 500;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.4rem;
+    }
+
+    /* flag marquee */
+    .flags-strip {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 1.1rem 0;
+      overflow: hidden;
+      position: relative;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    }
+    .flags-strip-label {
+      position: absolute;
+      left: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      z-index: 2;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .flags-track {
+      display: flex;
+      width: max-content;
+      gap: 0.6rem;
+      align-items: center;
+      animation: flags-scroll 40s linear infinite;
+    }
+    .flags-track:hover { animation-play-state: paused; }
+    .flags-track .flag {
+      font-size: 1.65rem;
+      line-height: 1;
+      filter: grayscale(15%);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .flags-track .flag:hover {
+      transform: scale(1.35) translateY(-3px);
+      filter: grayscale(0%);
+    }
+    @keyframes flags-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ───────────────────────────────── TRAINING */
+    #training {
+      background: var(--cream);
+      padding: 7rem 0;
+    }
+    .training-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3rem;
+    }
+    .training-text h2 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+    .training-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+    .training-text .all-welcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--pale);
+      border: 1px solid var(--mint);
+      border-radius: 100px;
+      padding: 0.4rem 1rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    .session-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .session-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      padding: 1.75rem 2rem;
+      color: var(--white);
+    }
+    .session-card.sunday {
+      background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 60%, #40916c 100%);
+    }
+    .session-card.wednesday {
+      background: linear-gradient(135deg, #0d2818 0%, #1e5c38 60%, #2d6a4f 100%);
+    }
+    .session-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.05);
+      transform: translate(30%, -30%);
+    }
+    .session-day {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 2.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .session-day-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mint);
+      font-weight: 400;
+      margin-top: 0.2rem;
+    }
+    .session-details {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .session-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .detail-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+    .detail-val {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: 0.03em;
+    }
+    .session-badge {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 100px;
+      padding: 0.3rem 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ───────────────────────────────── WHY TOUCH */
+    #why {
+      background: var(--forest);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #why::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(82,183,136,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .why-header { text-align: center; margin-bottom: 4rem; }
+    .why-header h2 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .why-header p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.5);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+    .why-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .why-card:hover {
+      background: rgba(82, 183, 136, 0.08);
+      border-color: rgba(82, 183, 136, 0.25);
+      transform: translateY(-4px);
+    }
+    .why-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--mid));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.5rem;
+    }
+    .why-card h3 {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 1.6rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .why-card p {
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ───────────────────────────────── EVENTS */
+    #events {
+      background: var(--cream);
+      padding: 7rem 0;
+    }
+    .events-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .events-header h2 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--text-dark);
+    }
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .event-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      position: relative;
+      background: var(--white);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .event-card:hover {
+      box-shadow: 0 8px 48px rgba(0,0,0,0.12);
+      transform: translateY(-4px);
+    }
+    .event-card.featured {
+      grid-column: span 2;
+    }
+    .event-art {
+      height: 200px;
+      position: relative;
+      overflow: hidden;
+    }
+    .event-card.featured .event-art { height: 260px; }
+    .event-art-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+    }
+    .event-card:hover .event-art-bg { transform: scale(1.04); }
+    .art-dk {
+      background: linear-gradient(135deg,
+        #0d2818 0%, #1a3a2a 25%, #2d6a4f 55%, #52b788 100%);
+    }
+    .art-dk::after {
+      content: 'DK';
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.05em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 9rem;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+    }
+    .art-sweden {
+      background: linear-gradient(135deg,
+        #1a3a2a 0%, #2d6a4f 30%, #40916c 60%, #74c69d 100%);
+    }
+    .art-sweden::after {
+      content: 'SE';
+      position: absolute;
+      bottom: -0.1em;
+      right: -0.05em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 9rem;
+      color: rgba(255,255,255,0.06);
+      line-height: 1;
+      letter-spacing: -0.05em;
+      pointer-events: none;
+    }
+    .art-more {
+      background: linear-gradient(135deg, #071510 0%, #1a3a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .art-more-inner {
+      text-align: center;
+    }
+    .art-more-inner svg { opacity: 0.25; }
+    .event-date-pill {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      background: var(--gold);
+      color: var(--deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+    }
+    .event-location-pill {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(8px);
+      color: rgba(255,255,255,0.85);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .event-body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+    .event-type {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.5rem;
+    }
+    .event-body h3 {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+      line-height: 1.05;
+      margin-bottom: 0.7rem;
+    }
+    .event-body p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      color: var(--text-mid);
+    }
+    .event-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--pale);
+    }
+    .event-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--pale);
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+    .event-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .event-link:hover { color: var(--primary); gap: 0.6rem; }
+
+    /* ───────────────────────────────── GALLERY */
+    #gallery {
+      background: var(--deep);
+      padding: 7rem 0;
+    }
+    .gallery-header { text-align: center; margin-bottom: 3.5rem; }
+    .gallery-header h2 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--white);
+    }
+    .gallery-header p {
+      color: rgba(255,255,255,0.4);
+      font-size: 1rem;
+      margin-top: 0.75rem;
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
+    .gallery-item:nth-child(2) { aspect-ratio: 4/5; }
+    .gallery-item:nth-child(3) { aspect-ratio: 4/5; }
+    .gallery-item:nth-child(4) { aspect-ratio: 4/5; }
+    .gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+
+    .gallery-bg {
+      position: absolute;
+      inset: 0;
+      transition: transform 0.5s ease;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+    .gallery-item:hover .gallery-bg { transform: scale(1.05); }
+
+    .g1 { background: linear-gradient(135deg, #0d2818 0%, #1e5c38 40%, #52b788 100%); }
+    .g2 { background: linear-gradient(160deg, #071510 0%, #2d6a4f 60%, #74c69d 100%); }
+    .g3 { background: linear-gradient(200deg, #1a3a2a 0%, #40916c 50%, #b7e4c7 100%); }
+    .g4 { background: linear-gradient(110deg, #0d2818 0%, #1e5c38 55%, #52b788 100%); }
+    .g5 { background: linear-gradient(150deg, #071510 0%, #0d2818 30%, #1a3a2a 65%, #40916c 100%); }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover::before { opacity: 1; }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-caption {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .gallery-caption span {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.25rem;
+    }
+
+    /* photo placeholder art elements */
+    .gallery-art {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .ga-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+    }
+    .ga-line {
+      position: absolute;
+      background: rgba(255,255,255,0.06);
+    }
+
+    /* ───────────────────────────────── MEMBERSHIP */
+    #membership {
+      background: var(--cream);
+      padding: 7rem 0;
+    }
+    .membership-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .membership-text h2 {
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      color: var(--text-dark);
+      margin-bottom: 1.25rem;
+    }
+    .membership-text p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 1rem;
+    }
+    .membership-includes {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .include-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--text-mid);
+    }
+    .include-item::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--pale);
+      border: 1.5px solid var(--bright);
+      flex-shrink: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2352b788'%3E%3Cpath fill-rule='evenodd' d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z' clip-rule='evenodd'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+    }
+    .price-card-header {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+      padding: 2rem 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .price-card-header::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .price-tier {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 0.75rem;
+    }
+    .price-amount {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.25rem;
+      line-height: 1;
+    }
+    .price-currency {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.5rem;
+    }
+    .price-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: 4rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      align-self: flex-end;
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.05em;
+    }
+    .price-card-body { padding: 1.75rem 2rem 2rem; }
+    .payment-method {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--pale);
+      border: 1px solid var(--mint);
+      margin-bottom: 1rem;
+    }
+    .pay-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .pay-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+    .pay-detail {
+      font-size: 0.82rem;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+    .price-cta {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(135deg, var(--primary), var(--mid));
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 1rem;
+      border-radius: var(--radius);
+      margin-top: 1.25rem;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .price-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ───────────────────────────────── CONTACT */
+    #contact {
+      background: var(--forest);
+      padding: 7rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(82,183,136,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-size: clamp(2.5rem, 4.5vw, 4rem);
+      color: var(--white);
+      margin-bottom: 1.25rem;
+    }
+    .contact-info p {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2rem;
+    }
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-detail-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(82,183,136,0.12);
+      border: 1px solid rgba(82,183,136,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-detail-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .contact-detail-text span {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 2.5rem;
+    }
+    .social-link {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover {
+      background: rgba(82,183,136,0.15);
+      border-color: rgba(82,183,136,0.35);
+      color: var(--bright);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(82,183,136,0.5);
+      background: rgba(82,183,136,0.06);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: var(--forest); color: var(--white); }
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--gold);
+      color: var(--deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.95rem 2rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      width: 100%;
+      justify-content: center;
+    }
+    .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    /* ───────────────────────────────── FOOTER */
+    #footer {
+      background: var(--deep);
+      padding: 3rem 0 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.35);
+      margin-top: 1rem;
+      max-width: 260px;
+    }
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-col ul li a {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--bright); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-bottom p strong { color: rgba(255,255,255,0.35); }
+
+    /* ───────────────────────────────── KEYFRAMES */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scroll-drop {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    @keyframes sway {
+      0%, 100% { transform: rotate(-3deg); }
+      50%       { transform: rotate(3deg); }
+    }
+
+    /* ───────────────────────────────── RESPONSIVE */
+    @media (max-width: 1024px) {
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .events-grid { grid-template-columns: 1fr 1fr; }
+      .event-card.featured { grid-column: span 2; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-menu { display: flex; }
+
+      .training-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .membership-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .events-grid { grid-template-columns: 1fr; }
+      .event-card.featured { grid-column: span 1; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1) { grid-column: span 2; }
+      .gallery-item:nth-child(5) { grid-column: span 2; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      #training, #why, #events, #gallery, #membership, #contact { padding: 5rem 0; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content { padding-top: calc(var(--nav-h) - 16px); padding-bottom: 10rem; }
+      .hero-badge { margin-bottom: 0.6rem; }
+      .hero-logo { margin-bottom: 0.4rem; }
+      .hero-logo img { width: 72vw; border-radius: 18px; }
+      .hero-ctas { flex-direction: column; align-items: center; }
+      .btn-primary, .btn-ghost { width: 100%; max-width: 280px; justify-content: center; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .stat-item { padding: 1.75rem 1rem; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ───────────────────────────────── INTRO OVERLAY */
+    #intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: radial-gradient(ellipse 75% 65% at 50% 48%, #1a3a2a 0%, #0d2818 45%, #071510 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.25rem;
+      opacity: 1;
+      transition: opacity 0.65s ease;
+      pointer-events: all;
+    }
+    #intro-overlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #intro-overlay.gone {
+      display: none;
+    }
+    #intro-logo-wrap {
+      transform-origin: center center;
+    }
+    #intro-logo-img {
+      width: clamp(180px, 38vw, 300px);
+      height: auto;
+      border-radius: 18px;
+      display: block;
+      opacity: 0;
+      transform: scale(0.78);
+      transition: opacity 0.55s ease, transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1);
+      filter: drop-shadow(0 16px 64px rgba(0,0,0,0.75));
+    }
+    #intro-logo-img.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+    #intro-logo-img.morph {
+      transition: transform 0.8s cubic-bezier(0.76, 0, 0.24, 1),
+                  opacity 0.5s ease,
+                  border-radius 0.8s ease;
+    }
+    #intro-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0);
+      transition: color 0.6s ease 0.25s, opacity 0.4s ease;
+    }
+    #intro-sub.show {
+      color: rgba(255, 255, 255, 0.32);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════ INTRO OVERLAY -->
+  <div id="intro-overlay">
+    <div id="intro-logo-wrap">
+      <img src="CPH Logo 2.png" id="intro-logo-img" alt="Copenhagen Touch Rugby" />
+    </div>
+    <div id="intro-sub">Est. 2011 &nbsp;·&nbsp; Copenhagen</div>
+  </div>
+
+  <!-- ═══════════════════════ NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <img src="CPH Logo 2.png" alt="Copenhagen Touch Rugby" class="logo-icon" />
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#training">Training</a></li>
+        <li><a href="#why">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#membership">Membership</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#membership" class="nav-cta">Join Us</a></li>
+      </ul>
+
+      <div class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#training" class="mob-link">Training</a>
+    <a href="#why" class="mob-link">About</a>
+    <a href="#events" class="mob-link">Events</a>
+    <a href="#gallery" class="mob-link">Gallery</a>
+    <a href="#membership" class="mob-link">Membership</a>
+    <a href="#contact" class="mob-link">Contact</a>
+    <a href="#membership" class="mob-cta mob-link">Join Us</a>
+  </div>
+
+  <!-- ═══════════════════════ HERO -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-photo"></div>
+    <div class="hero-gradient"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        Copenhagen's Touch Rugby Club
+      </div>
+
+      <div class="hero-logo">
+        <img src="CPH Logo 2.png" alt="Copenhagen Touch Rugby" />
+      </div>
+
+      <p class="hero-tagline">
+        <strong>Non-contact. All welcome. Pure sport.</strong><br/>
+        Sundays &amp; Wednesdays — come as you are.
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#membership" class="btn-primary">
+          Join the Club
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#training" class="btn-ghost">
+          Come and Join
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <!-- Wave cut -->
+    <svg class="hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 40 C 180 80 360 0 540 40 C 720 80 900 0 1080 40 C 1260 80 1350 20 1440 40 L1440 80 L0 80 Z" fill="#f4faf6"/>
+    </svg>
+  </section>
+
+  <!-- ═══════════════════════ TRAINING -->
+  <section id="training">
+    <div class="container">
+      <div class="training-grid">
+        <div class="training-text">
+          <div class="section-label">Get on the pitch</div>
+          <h2 class="section-heading reveal">When We<br/>Play</h2>
+
+          <div class="all-welcome reveal reveal-delay-1">
+            ✦ All levels welcome
+          </div>
+
+          <p class="reveal reveal-delay-1">
+            Whether you've played touch all your life or you're picking up the ball for the very first time — there's a place for you at CPH Touch. Our sessions are relaxed, social and fun, but don't be surprised if things get competitive!
+          </p>
+          <p class="reveal reveal-delay-2">
+            We train rain or shine at Fælledparken. Just turn up in comfortable kit and trainers. No kit required — just bring your energy.
+          </p>
+
+          <a href="#contact" class="btn-primary reveal reveal-delay-3" style="margin-top: 2rem; display: inline-flex;">
+            Get in Touch
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="session-cards">
+          <div class="session-card sunday reveal reveal-delay-1">
+            <span class="session-badge">Weekly</span>
+            <div class="session-day">Sunday</div>
+            <div class="session-day-sub">All Year Round</div>
+            <div class="session-details">
+              <div class="session-detail">
+                <span class="detail-label">Time</span>
+                <span class="detail-val">10:30</span>
+              </div>
+              <div class="session-detail">
+                <span class="detail-label">Location</span>
+                <span class="detail-val">Fælledparken</span>
+              </div>
+              <div class="session-detail">
+                <span class="detail-label">Format</span>
+                <span class="detail-val">Mixed Touch</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="session-card wednesday reveal reveal-delay-2">
+            <span class="session-badge">Weekly</span>
+            <div class="session-day">Wednesday</div>
+            <div class="session-day-sub">Summer Time</div>
+            <div class="session-details">
+              <div class="session-detail">
+                <span class="detail-label">Time</span>
+                <span class="detail-val">17:30</span>
+              </div>
+              <div class="session-detail">
+                <span class="detail-label">Location</span>
+                <span class="detail-val">Fælledparken</span>
+              </div>
+              <div class="session-detail">
+                <span class="detail-label">Format</span>
+                <span class="detail-val">Mixed Touch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ STATS -->
+  <section id="stats">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-target="55" data-suffix="+">0</div>
+        <div class="stat-label">Active Players</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-target="2">0</div>
+        <div class="stat-label">Sessions / Week</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" style="-webkit-text-fill-color:unset; background:none; color:var(--bright);">2011</div>
+        <div class="stat-label">Est. Copenhagen</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-target="2" data-suffix="+">0</div>
+        <div class="stat-label">Tournaments / Year</div>
+      </div>
+    </div>
+
+    <!-- Flag marquee -->
+    <div class="flags-strip">
+      <div class="flags-track">
+        <!-- set 1 -->
+        <span class="flag" title="Denmark">🇩🇰</span>
+        <span class="flag" title="United Kingdom">🇬🇧</span>
+        <span class="flag" title="Australia">🇦🇺</span>
+        <span class="flag" title="New Zealand">🇳🇿</span>
+        <span class="flag" title="South Africa">🇿🇦</span>
+        <span class="flag" title="Ireland">🇮🇪</span>
+        <span class="flag" title="France">🇫🇷</span>
+        <span class="flag" title="Germany">🇩🇪</span>
+        <span class="flag" title="Netherlands">🇳🇱</span>
+        <span class="flag" title="Sweden">🇸🇪</span>
+        <span class="flag" title="Norway">🇳🇴</span>
+        <span class="flag" title="Finland">🇫🇮</span>
+        <span class="flag" title="USA">🇺🇸</span>
+        <span class="flag" title="Canada">🇨🇦</span>
+        <span class="flag" title="Brazil">🇧🇷</span>
+        <span class="flag" title="Argentina">🇦🇷</span>
+        <span class="flag" title="India">🇮🇳</span>
+        <span class="flag" title="Japan">🇯🇵</span>
+        <span class="flag" title="Portugal">🇵🇹</span>
+        <span class="flag" title="Spain">🇪🇸</span>
+        <span class="flag" title="Italy">🇮🇹</span>
+        <span class="flag" title="Belgium">🇧🇪</span>
+        <span class="flag" title="Poland">🇵🇱</span>
+        <span class="flag" title="Romania">🇷🇴</span>
+        <span class="flag" title="Greece">🇬🇷</span>
+        <span class="flag" title="Switzerland">🇨🇭</span>
+        <span class="flag" title="Czech Republic">🇨🇿</span>
+        <span class="flag" title="Ukraine">🇺🇦</span>
+        <span class="flag" title="Philippines">🇵🇭</span>
+        <span class="flag" title="Singapore">🇸🇬</span>
+        <span class="flag" title="Kenya">🇰🇪</span>
+        <span class="flag" title="Nigeria">🇳🇬</span>
+        <span class="flag" title="Mexico">🇲🇽</span>
+        <span class="flag" title="Chile">🇨🇱</span>
+        <span class="flag" title="Israel">🇮🇱</span>
+        <span class="flag" title="United Arab Emirates">🇦🇪</span>
+        <!-- set 2 — identical copy for seamless loop -->
+        <span class="flag" title="Denmark">🇩🇰</span>
+        <span class="flag" title="United Kingdom">🇬🇧</span>
+        <span class="flag" title="Australia">🇦🇺</span>
+        <span class="flag" title="New Zealand">🇳🇿</span>
+        <span class="flag" title="South Africa">🇿🇦</span>
+        <span class="flag" title="Ireland">🇮🇪</span>
+        <span class="flag" title="France">🇫🇷</span>
+        <span class="flag" title="Germany">🇩🇪</span>
+        <span class="flag" title="Netherlands">🇳🇱</span>
+        <span class="flag" title="Sweden">🇸🇪</span>
+        <span class="flag" title="Norway">🇳🇴</span>
+        <span class="flag" title="Finland">🇫🇮</span>
+        <span class="flag" title="USA">🇺🇸</span>
+        <span class="flag" title="Canada">🇨🇦</span>
+        <span class="flag" title="Brazil">🇧🇷</span>
+        <span class="flag" title="Argentina">🇦🇷</span>
+        <span class="flag" title="India">🇮🇳</span>
+        <span class="flag" title="Japan">🇯🇵</span>
+        <span class="flag" title="Portugal">🇵🇹</span>
+        <span class="flag" title="Spain">🇪🇸</span>
+        <span class="flag" title="Italy">🇮🇹</span>
+        <span class="flag" title="Belgium">🇧🇪</span>
+        <span class="flag" title="Poland">🇵🇱</span>
+        <span class="flag" title="Romania">🇷🇴</span>
+        <span class="flag" title="Greece">🇬🇷</span>
+        <span class="flag" title="Switzerland">🇨🇭</span>
+        <span class="flag" title="Czech Republic">🇨🇿</span>
+        <span class="flag" title="Ukraine">🇺🇦</span>
+        <span class="flag" title="Philippines">🇵🇭</span>
+        <span class="flag" title="Singapore">🇸🇬</span>
+        <span class="flag" title="Kenya">🇰🇪</span>
+        <span class="flag" title="Nigeria">🇳🇬</span>
+        <span class="flag" title="Mexico">🇲🇽</span>
+        <span class="flag" title="Chile">🇨🇱</span>
+        <span class="flag" title="Israel">🇮🇱</span>
+        <span class="flag" title="United Arab Emirates">🇦🇪</span>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════ WHY TOUCH -->
+  <section id="why">
+    <div class="container">
+      <div class="why-header">
+        <div class="section-label light" style="justify-content: center;">The Sport</div>
+        <h2 class="section-heading reveal" style="color:var(--white)">Why Touch Rugby?</h2>
+        <p class="reveal reveal-delay-1">Fast, fun, and fiercely inclusive. Touch is one of the most social sports on the planet — and you don't need to be a rugby player to love it.</p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-icon">🤝</div>
+          <h3>Non-Contact</h3>
+          <p>No tackles, no rucks, no scrums. Touch is safe, accessible and easy to pick up — whatever your background.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-icon">⚡</div>
+          <h3>Fast-Paced</h3>
+          <p>Six touches, lightning restarts, constant movement. Touch keeps everyone involved from the first minute to the last.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-icon">🌍</div>
+          <h3>Inclusive</h3>
+          <p>Mixed-gender, all ages, all fitness levels. Our club brings together people from across Copenhagen and the world.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-icon">🍻</div>
+          <h3>Social</h3>
+          <p>The game is great — but the community is even better. Post-training drinks, club events, and tournaments all year round.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ EVENTS -->
+  <section id="events">
+    <div class="container">
+      <div class="events-header">
+        <div>
+          <div class="section-label">On the calendar</div>
+          <h2 class="section-heading reveal">Upcoming<br/>Events</h2>
+        </div>
+        <p class="reveal reveal-delay-1" style="max-width:340px; color:var(--text-mid); font-size:1rem; line-height:1.7;">
+          From national trials to cross-border tournaments — there's always something to play for.
+        </p>
+      </div>
+
+      <div class="events-grid">
+        <!-- DK Touch Trials -->
+        <div class="event-card featured reveal">
+          <div class="event-art">
+            <div class="event-art-bg art-dk"></div>
+            <div class="event-date-pill">Spring 2026</div>
+            <div class="event-location-pill">📍 Copenhagen, DK</div>
+          </div>
+          <div class="event-body">
+            <div class="event-type">National Tournament</div>
+            <h3>DK Touch Trials</h3>
+            <p>The annual national touch rugby trials — where Denmark's best compete for places on the national squad. CPH Touch players have represented Denmark at European and World level. Could you be next?</p>
+            <div class="event-footer">
+              <span class="event-tag">🏆 National</span>
+              <a href="#contact" class="event-link">
+                Find out more
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Touchtober -->
+        <div class="event-card reveal reveal-delay-1">
+          <div class="event-art">
+            <div class="event-art-bg art-sweden"></div>
+            <div class="event-date-pill">Oct 2026</div>
+            <div class="event-location-pill">📍 Sweden</div>
+          </div>
+          <div class="event-body">
+            <div class="event-type">International Tournament</div>
+            <h3>Touchtober</h3>
+            <p>Cross the bridge to Sweden for one of Scandinavia's most fun touch rugby festivals. Great rugby, great atmosphere.</p>
+            <div class="event-footer">
+              <span class="event-tag">🌍 International</span>
+              <a href="#contact" class="event-link">
+                Register interest
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- More coming -->
+        <div class="event-card reveal reveal-delay-2">
+          <div class="event-art">
+            <div class="event-art-bg art-more">
+              <div class="art-more-inner">
+                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                  <circle cx="24" cy="24" r="23" stroke="white" stroke-width="1.5"/>
+                  <path d="M24 16v16M16 24h16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="event-body">
+            <div class="event-type">More Events</div>
+            <h3>More To Come</h3>
+            <p>More tournaments and socials throughout the year. Follow us or get in touch to stay in the loop.</p>
+            <div class="event-footer">
+              <span class="event-tag">📅 2026</span>
+              <a href="#contact" class="event-link">
+                Stay updated
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="gallery-header">
+        <div class="section-label light" style="justify-content: center;">Club Life</div>
+        <h2 class="section-heading reveal" style="color:var(--white)">On the Pitch</h2>
+        <p class="reveal reveal-delay-1">Training sessions, tournaments, and moments from our club.</p>
+      </div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item reveal">
+          <img src="Touchtober 2025/54849837331_969c2b4e17_k.jpg" class="gallery-bg" alt="Action on the pitch" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              Action on the Pitch
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1">
+          <img src="Touchtober 2025/54839533143_1596b98d09_k.jpg" class="gallery-bg" alt="Player in action" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              Player Focus
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2">
+          <img src="Touchtober 2025/54839533198_f2fd5d3fcf_k.jpg" class="gallery-bg" alt="Player on the pitch" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              Between the Plays
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-3">
+          <img src="Touchtober 2025/54849841541_a5a553b633_k.jpg" class="gallery-bg" alt="Team enjoying the game" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              That's Why We Play
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="Touchtober 2025/54850083454_5ab023b10c_k.jpg" class="gallery-bg" alt="Full squad photo" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              The Full Squad
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="reveal" style="text-align:center; margin-top:2.5rem; color:rgba(255,255,255,0.25); font-size:0.85rem; letter-spacing:0.08em;">
+        Follow us on Instagram for more photos &amp; videos
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ MEMBERSHIP -->
+  <section id="membership">
+    <div class="container">
+      <div class="membership-inner">
+        <div class="membership-text">
+          <div class="section-label">Become a member</div>
+          <h2 class="section-heading reveal">Join CPH<br/>Touch</h2>
+
+          <p class="reveal reveal-delay-1">
+            Membership gives you access to all regular training sessions, club events, and the chance to represent CPH Touch at tournaments across Scandinavia and beyond.
+          </p>
+          <p class="reveal reveal-delay-2">
+            New to the sport? Come to three free trial sessions before committing. We want you to love touch rugby as much as we do.
+          </p>
+
+          <div class="membership-includes reveal reveal-delay-2">
+            <div class="include-item">Access to all weekly training sessions</div>
+            <div class="include-item">Club jersey &amp; membership card</div>
+            <div class="include-item">Priority spots on tournament teams</div>
+            <div class="include-item">Access to club social events</div>
+            <div class="include-item">3 free trial sessions for new players</div>
+            <div class="include-item">Club discount at partner venues</div>
+          </div>
+        </div>
+
+        <div class="price-card reveal reveal-delay-1">
+          <div class="price-card-header">
+            <div class="price-tier">Annual Membership</div>
+            <div class="price-amount">
+              <span class="price-currency">DKK</span>
+              <span class="price-num">500</span>
+              <span class="price-period">/ year</span>
+            </div>
+          </div>
+          <div class="price-card-body">
+            <p style="font-size:0.9rem; color:var(--text-mid); margin-bottom:1.25rem; line-height:1.6;">
+              Pay once for the full season. No monthly fees, no hidden costs. Just turn up and play.
+            </p>
+
+            <div class="payment-method">
+              <div class="pay-icon">📱</div>
+              <div>
+                <div class="pay-label">MobilePay</div>
+                <div class="pay-detail">Send to: <strong>#XXXXXX</strong> — include your full name</div>
+              </div>
+            </div>
+
+            <div class="payment-method">
+              <div class="pay-icon">🏦</div>
+              <div>
+                <div class="pay-label">Bank Transfer</div>
+                <div class="pay-detail">Reg: XXXX &nbsp;·&nbsp; Konto: XXXXXXXXXX<br/>Reference: Your name + "membership"</div>
+              </div>
+            </div>
+
+            <a href="#contact" class="price-cta">
+              Register Interest →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="section-label light">Get in touch</div>
+          <h2 class="section-heading reveal">Say Hello</h2>
+          <p class="reveal reveal-delay-1">
+            Questions about training? Want to come down and try it out? Interested in tournaments? Drop us a message and we'll get back to you fast.
+          </p>
+
+          <div class="contact-details reveal reveal-delay-1">
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📧</div>
+              <div class="contact-detail-text">
+                <strong>Email</strong>
+                <span>info@cphtouch.dk</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-text">
+                <strong>Location</strong>
+                <span>Fælledparken, Copenhagen</span>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="contact-detail-icon">🗓️</div>
+              <div class="contact-detail-text">
+                <strong>Sessions</strong>
+                <span>Sunday 10:30 &amp; Wednesday 17:30</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-links reveal reveal-delay-2">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter/X">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form reveal reveal-delay-1">
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Alex" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Jensen" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label>I'm interested in…</label>
+            <select>
+              <option value="">Select an option</option>
+              <option>Joining as a new player</option>
+              <option>Annual membership</option>
+              <option>Upcoming tournaments</option>
+              <option>General question</option>
+              <option>Sponsorship / partnership</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <textarea placeholder="Tell us a bit about yourself and what brings you to CPH Touch…"></textarea>
+          </div>
+
+          <button class="form-submit" type="button" onclick="handleFormSubmit(this)">
+            Send Message
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════ FOOTER -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo" style="margin-bottom:0.5rem;">
+            <img src="CPH Logo 2.png" alt="Copenhagen Touch Rugby" class="logo-icon-footer" />
+          </a>
+          <p>Copenhagen's touch rugby community. All levels, all nationalities, all welcome. Come play with us.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#why">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Club</h4>
+          <ul>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Code of Conduct</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="mailto:info@cphtouch.dk">Email us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2026 <strong>CPH Touch Rugby Club</strong>. All rights reserved.</p>
+        <p>Made with ❤️ in Copenhagen</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════ SCRIPTS -->
+  <script>
+    // ── INTRO ANIMATION
+    (function () {
+      const overlay   = document.getElementById('intro-overlay');
+      const introImg  = document.getElementById('intro-logo-img');
+      const introSub  = document.getElementById('intro-sub');
+      const navImg    = document.querySelector('.nav-logo img');
+
+      // Lock scroll while intro plays
+      document.body.style.overflow = 'hidden';
+
+      // Phase 1 — logo springs in
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        introImg.classList.add('show');
+        introSub.classList.add('show');
+      }));
+
+      // Phase 2 — morph logo toward nav position
+      setTimeout(() => {
+        const iRect = introImg.getBoundingClientRect();
+        const nRect = navImg.getBoundingClientRect();
+
+        const dx    = (nRect.left + nRect.width  / 2) - (iRect.left + iRect.width  / 2);
+        const dy    = (nRect.top  + nRect.height / 2) - (iRect.top  + iRect.height / 2);
+        const scale = nRect.height / iRect.height;
+
+        // fade out subtitle immediately
+        introSub.style.opacity = '0';
+
+        introImg.classList.add('morph');
+        introImg.style.transform   = `translate(${dx}px, ${dy}px) scale(${scale})`;
+        introImg.style.borderRadius = '8px';
+      }, 1300);
+
+      // Phase 3 — fade out overlay (morph is ~0.8s so starts fading as it lands)
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+      }, 2000);
+
+      // Phase 4 — remove overlay & unlock scroll
+      setTimeout(() => {
+        overlay.classList.add('gone');
+        document.body.style.overflow = '';
+      }, 2700);
+    })();
+
+    // ── NAV scroll behavior
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // ── MOBILE MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    document.querySelectorAll('.mob-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── HERO CANVAS PARTICLES
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles = [];
+
+      const COLORS = [
+        'rgba(82,183,136,',
+        'rgba(116,198,157,',
+        'rgba(40,116,80,',
+        'rgba(183,228,199,',
+        'rgba(255,255,255,'
+      ];
+
+      function resize() {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      function Particle() {
+        this.x = Math.random() * W;
+        this.y = Math.random() * H;
+        this.r = Math.random() * 2.5 + 0.5;
+        this.vx = (Math.random() - 0.5) * 0.3;
+        this.vy = (Math.random() - 0.5) * 0.3 - 0.1;
+        this.alpha = Math.random() * 0.45 + 0.05;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.pulse = Math.random() * Math.PI * 2;
+        this.pulseSpeed = Math.random() * 0.012 + 0.004;
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 120 }, () => new Particle());
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.pulse += p.pulseSpeed;
+          const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color + a + ')';
+          ctx.fill();
+
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < -10) p.x = W + 10;
+          if (p.x > W + 10) p.x = -10;
+          if (p.y < -10) p.y = H + 10;
+          if (p.y > H + 10) p.y = -10;
+        });
+
+        // draw subtle connecting lines
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 80) {
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = `rgba(82,183,136,${0.04 * (1 - dist / 80)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      window.addEventListener('resize', resize, { passive: true });
+      init();
+      draw();
+    })();
+
+    // ── SCROLL REVEAL
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── STATS COUNTER
+    function animateCount(el, target, duration = 1800) {
+      const start = performance.now();
+      const isPlus = true;
+      const update = (now) => {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = Math.round(ease * target);
+        el.textContent = val + (el.dataset.suffix || '');
+        if (progress < 1) requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+    }
+
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          animateCount(el, target);
+          statObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
+
+    // ── ACTIVE NAV link on scroll
+    const sections = ['hero','training','why','events','gallery','membership','contact'];
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + id
+              ? 'rgba(255,255,255,0.95)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) sectionObserver.observe(el);
+    });
+
+    // ── FORM SUBMIT (demo)
+    function handleFormSubmit(btn) {
+      btn.textContent = '✓  Message Sent!';
+      btn.style.background = 'var(--bright)';
+      btn.style.color = 'white';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.innerHTML = 'Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M10 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        btn.style.background = '';
+        btn.style.color = '';
+        btn.disabled = false;
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
