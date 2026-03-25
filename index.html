@@ -683,7 +683,7 @@
       color: rgba(255,255,255,0.7);
     }
 
-    /* ───────────────────────────────── WHY TOUCH */
+    /* ───────────────────────────────── WHAT IS TOUCH */
     #why {
       background: var(--forest);
       padding: 7rem 0;
@@ -701,37 +701,75 @@
       background: radial-gradient(circle, rgba(82,183,136,0.08) 0%, transparent 70%);
       pointer-events: none;
     }
-    .why-header { text-align: center; margin-bottom: 4rem; }
-    .why-header h2 {
+    .what-header { text-align: center; margin-bottom: 4rem; }
+    .what-header h2 {
       font-size: clamp(2.8rem, 5vw, 4.5rem);
       color: var(--white);
       margin-bottom: 1rem;
     }
-    .why-header p {
+    .what-header p {
       font-size: 1.05rem;
       color: rgba(255,255,255,0.5);
-      max-width: 520px;
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.7;
     }
-    .why-grid {
+    .what-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+    .what-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .what-images img {
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .what-images img:first-child {
+      grid-column: span 2;
+      height: 280px;
+    }
+    .what-text h3 {
+      font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
+      font-weight: 400;
+      font-size: 2rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .what-text p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1rem;
+    }
+    .rules-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.5rem;
     }
-    .why-card {
+    .rule-card {
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.07);
       border-radius: var(--radius-lg);
       padding: 2rem 1.5rem;
+      text-align: center;
       transition: background 0.3s, border-color 0.3s, transform 0.3s;
     }
-    .why-card:hover {
+    .rule-card:hover {
       background: rgba(82, 183, 136, 0.08);
       border-color: rgba(82, 183, 136, 0.25);
       transform: translateY(-4px);
     }
-    .why-icon {
+    .rule-icon {
       width: 52px;
       height: 52px;
       border-radius: 14px;
@@ -739,21 +777,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.25rem;
+      margin: 0 auto 1.25rem;
       font-size: 1.5rem;
     }
-    .why-card h3 {
+    .rule-card h4 {
       font-family: 'Bebas Neue', 'Barlow Condensed', sans-serif;
       font-weight: 400;
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--white);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
     }
-    .why-card p {
-      font-size: 0.92rem;
-      line-height: 1.65;
+    .rule-card p {
+      font-size: 0.88rem;
+      line-height: 1.6;
       color: rgba(255,255,255,0.45);
     }
 
@@ -1399,7 +1437,8 @@
     /* ───────────────────────────────── RESPONSIVE */
     @media (max-width: 1024px) {
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .rules-grid { grid-template-columns: repeat(2, 1fr); }
+      .what-content { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr 1fr; }
       .event-card.featured { grid-column: span 2; }
     }
@@ -1410,8 +1449,9 @@
       .mobile-menu { display: flex; }
 
       .training-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .membership-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .what-content { grid-template-columns: 1fr; }
+      .rules-grid { grid-template-columns: 1fr 1fr; }
       .events-grid { grid-template-columns: 1fr; }
       .event-card.featured { grid-column: span 1; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -1434,7 +1474,9 @@
       .footer-inner { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; }
-      .why-grid { grid-template-columns: 1fr; }
+      .rules-grid { grid-template-columns: 1fr; }
+      .what-images img:first-child { height: 200px; }
+      .what-images img { height: 160px; }
     }
 
     /* ───────────────────────────────── INTRO OVERLAY */
@@ -1514,7 +1556,7 @@
 
       <ul class="nav-links">
         <li><a href="#training">Training</a></li>
-        <li><a href="#why">About</a></li>
+        <li><a href="#why">The Sport</a></li>
         <li><a href="#events">News</a></li>
         <li><a href="#gallery">Gallery</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -1529,7 +1571,7 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="#training" class="mob-link">Training</a>
-    <a href="#why" class="mob-link">About</a>
+    <a href="#why" class="mob-link">The Sport</a>
     <a href="#events" class="mob-link">News</a>
     <a href="#gallery" class="mob-link">Gallery</a>
     <a href="#contact" class="mob-link">Contact</a>
@@ -1755,35 +1797,49 @@
 
   </section>
 
-  <!-- ═══════════════════════ WHY TOUCH -->
+  <!-- ═══════════════════════ WHAT IS TOUCH -->
   <section id="why">
     <div class="container">
-      <div class="why-header">
+      <div class="what-header">
         <div class="section-label light" style="justify-content: center;">The Sport</div>
-        <h2 class="section-heading reveal" style="color:var(--white)">Why Touch Rugby?</h2>
-        <p class="reveal reveal-delay-1">Fast, fun, and fiercely inclusive. Touch is one of the most social sports on the planet — and you don't need to be a rugby player to love it.</p>
+        <h2 class="section-heading reveal" style="color:var(--white)">What is Touch Rugby?</h2>
+        <p class="reveal reveal-delay-1">Touch rugby is a fast, non-contact version of rugby played worldwide. No tackles, no scrums — just speed, skill, and teamwork. It's one of the most inclusive and social sports on the planet.</p>
       </div>
 
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="why-icon">🤝</div>
-          <h3>Non-Contact</h3>
-          <p>No tackles, no rucks, no scrums. Touch is safe, accessible and easy to pick up — whatever your background.</p>
+      <div class="what-content">
+        <div class="what-images reveal">
+          <img src="Touchtober 2025/Teamphoto.jpg" alt="CPH Touch team photo" />
+          <img src="Touchtober 2025/54850087189_77823a8083_k.jpg" alt="Touch rugby action" />
+          <img src="Touchtober 2025/54839517039_576515185e_k.jpg" alt="Touch rugby game" />
         </div>
-        <div class="why-card reveal reveal-delay-1">
-          <div class="why-icon">⚡</div>
-          <h3>Fast-Paced</h3>
-          <p>Six touches, lightning restarts, constant movement. Touch keeps everyone involved from the first minute to the last.</p>
+        <div class="what-text reveal reveal-delay-1">
+          <h3>How It Works</h3>
+          <p>Two teams of six take the field. The attacking team has six touches to score a try before handing over possession. A "touch" replaces the tackle — just a tap on the body with one or two hands. After a touch, play restarts with a rollball (roll the ball between your legs to a teammate).</p>
+          <p>There are no scrums, no lineouts, and no kicking. The ball can only be passed backwards or sideways — just like in rugby union or league. If you drop it or pass it forward, the other team gets the ball.</p>
+          <p>Games are typically two 20-minute halves with rolling substitutions, so everyone gets plenty of time on the field. It's fast, it's intense, and it's a seriously good workout.</p>
         </div>
-        <div class="why-card reveal reveal-delay-2">
-          <div class="why-icon">🌍</div>
-          <h3>Inclusive</h3>
-          <p>Mixed-gender, all ages, all fitness levels. Our club brings together people from across Copenhagen and the world.</p>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card reveal">
+          <div class="rule-icon">🤝</div>
+          <h4>Non-Contact</h4>
+          <p>No tackles, no rucks. A gentle touch is all it takes. Safe for all ages and experience levels.</p>
         </div>
-        <div class="why-card reveal reveal-delay-3">
-          <div class="why-icon">🍻</div>
-          <h3>Social</h3>
-          <p>The game is great — but the community is even better. Post-training drinks, club events, and tournaments all year round.</p>
+        <div class="rule-card reveal reveal-delay-1">
+          <div class="rule-icon">6️⃣</div>
+          <h4>Six Touches</h4>
+          <p>The attacking team gets six touches to score. After six, possession switches to the other team.</p>
+        </div>
+        <div class="rule-card reveal reveal-delay-2">
+          <div class="rule-icon">🔄</div>
+          <h4>Rolling Subs</h4>
+          <p>Players swap on and off freely throughout the game. Everyone plays, everyone rests — no one sits on the bench.</p>
+        </div>
+        <div class="rule-card reveal reveal-delay-3">
+          <div class="rule-icon">⚡</div>
+          <h4>Mixed &amp; Inclusive</h4>
+          <p>Played as mixed gender by default. All fitness levels, all backgrounds, all welcome. Speed and smarts beat size every time.</p>
         </div>
       </div>
     </div>
@@ -2048,7 +2104,7 @@
           <h4>Navigate</h4>
           <ul>
             <li><a href="#training">Training</a></li>
-            <li><a href="#why">About</a></li>
+            <li><a href="#why">The Sport</a></li>
             <li><a href="#events">News</a></li>
             <li><a href="#gallery">Gallery</a></li>
           </ul>
