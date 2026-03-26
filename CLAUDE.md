@@ -6,12 +6,24 @@ Single `index.html` file with embedded CSS and JS. All assets (logos, photos) ar
 ## Hosting Plan
 - **GitHub** — source of truth for all code and images
 - **Netlify** — auto-deploys on every push to main branch
-- **Domain** — buy `cphtouch.dk` (or similar) from [simply.com](https://simply.com) (~99 DKK/year), point to Cloudflare
+- **Domain** — `copenhagentouchrugby.dk` purchased from [simply.com](https://simply.com), pointed to Netlify
 
 ### Deploy workflow
 ```
 Edit index.html → commit & push to GitHub → Netlify auto-deploys → live in ~1 min
 ```
+
+## Domain & DNS Status
+
+### copenhagentouchrugby.dk → CPH Touch Website
+- **Registrar:** Simply.com
+- **DNS records configured:**
+  - `A @ → 75.2.60.5`
+  - `A @ → 99.83.190.102`
+  - `CNAME www → cph-touch-website.netlify.app`
+- **Primary domain in Netlify:** `copenhagentouchrugby.dk` (without www)
+- **SSL status:** ⏳ Pending — DNS was added 2026-03-26, waiting for global propagation. Once [dnschecker.org](https://dnschecker.org/) shows the A record globally, hit "Renew certificate" in Netlify → HTTPS section.
+- **Next step:** Check SSL cert provisioning. If still failing, wait up to 24h for full `.dk` propagation then retry.
 
 ## Workflow Rules
 - **Always push to GitHub** after making changes. Every change should be committed and pushed — don't wait for the user to ask.
@@ -59,6 +71,6 @@ images/
 
 ## Security Notes
 - No API keys or secrets in the codebase — safe to keep repo public
-- HTTPS handled automatically by Cloudflare
+- HTTPS handled automatically by Netlify (Let's Encrypt) once DNS propagates
 - Contact form currently has no backend — **fix before launch** (Formspree)
 - Google Fonts loads from external CDN (minor GDPR note — self-host if strict compliance needed)
