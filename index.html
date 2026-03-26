@@ -310,14 +310,14 @@
       gap: 0.5rem;
       border: 1px solid rgba(82, 183, 136, 0.4);
       border-radius: 100px;
-      padding: 0.35rem 1.1rem;
+      padding: 0.4rem 1.3rem;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.75rem;
+      font-size: clamp(0.75rem, 1vw, 0.9rem);
       font-weight: 600;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--bright);
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
       backdrop-filter: blur(8px);
       background: rgba(82, 183, 136, 0.08);
       animation: fadeInDown 0.8s ease 0.2s both;
@@ -335,7 +335,7 @@
       margin-bottom: 0.5rem;
     }
     .hero-logo img {
-      width: clamp(200px, 35vw, 380px);
+      width: clamp(200px, 42vw, 520px);
       height: auto;
       border-radius: 16px;
       display: block;
@@ -363,10 +363,10 @@
     }
 
     .hero-tagline {
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       font-family: 'Barlow', sans-serif;
       font-weight: 300;
-      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      font-size: clamp(1.1rem, 2.4vw, 1.65rem);
       color: rgba(255,255,255,0.55);
       letter-spacing: 0.04em;
       animation: fadeInUp 0.9s ease 0.5s both;
@@ -378,10 +378,10 @@
 
     .hero-ctas {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 2.5rem;
+      margin-top: 3rem;
       animation: fadeInUp 0.9s ease 0.65s both;
     }
 
