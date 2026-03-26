@@ -5,13 +5,16 @@ Single `index.html` file with embedded CSS and JS. All assets (logos, photos) ar
 
 ## Hosting Plan
 - **GitHub** — source of truth for all code and images
-- **Cloudflare Pages** — auto-deploys on every push to main branch (free tier)
+- **Netlify** — auto-deploys on every push to main branch
 - **Domain** — buy `cphtouch.dk` (or similar) from [simply.com](https://simply.com) (~99 DKK/year), point to Cloudflare
 
 ### Deploy workflow
 ```
-Edit index.html → commit & push to GitHub → Cloudflare auto-deploys → live in ~1 min
+Edit index.html → commit & push to GitHub → Netlify auto-deploys → live in ~1 min
 ```
+
+## Workflow Rules
+- **Always push to GitHub** after making changes. Every change should be committed and pushed — don't wait for the user to ask.
 
 ## Before Going Live — Checklist
 

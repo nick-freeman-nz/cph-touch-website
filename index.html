@@ -560,7 +560,7 @@
     }
 
     /* ───────────────────────────────── TRAINING */
-    #training {
+    #playing {
       background: var(--cream);
       padding: 7rem 0;
     }
@@ -1459,7 +1459,7 @@
       .gallery-item:nth-child(5) { grid-column: span 2; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      #training, #why, #events, #gallery, #contact { padding: 5rem 0; }
+      #playing, #why, #events, #gallery, #contact { padding: 5rem 0; }
     }
 
     @media (max-width: 480px) {
@@ -1555,7 +1555,7 @@
       </a>
 
       <ul class="nav-links">
-        <li><a href="#training">Training</a></li>
+        <li><a href="#playing">Want to Play</a></li>
         <li><a href="#why">The Sport</a></li>
         <li><a href="#events">News</a></li>
         <li><a href="#gallery">Gallery</a></li>
@@ -1570,7 +1570,7 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#training" class="mob-link">Training</a>
+    <a href="#playing" class="mob-link">Want to Play</a>
     <a href="#why" class="mob-link">The Sport</a>
     <a href="#events" class="mob-link">News</a>
     <a href="#gallery" class="mob-link">Gallery</a>
@@ -1605,7 +1605,7 @@
             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
-        <a href="#training" class="btn-ghost">
+        <a href="#playing" class="btn-ghost">
           Come and Join
         </a>
       </div>
@@ -1623,7 +1623,7 @@
   </section>
 
   <!-- ═══════════════════════ TRAINING -->
-  <section id="training">
+  <section id="playing">
     <div class="container">
       <div class="training-grid">
         <div class="training-text">
@@ -2103,7 +2103,7 @@
         <div class="footer-col">
           <h4>Navigate</h4>
           <ul>
-            <li><a href="#training">Training</a></li>
+            <li><a href="#playing">Want to Play</a></li>
             <li><a href="#why">The Sport</a></li>
             <li><a href="#events">News</a></li>
             <li><a href="#gallery">Gallery</a></li>
@@ -2324,7 +2324,7 @@
     document.querySelectorAll('[data-target]').forEach(el => statObserver.observe(el));
 
     // ── ACTIVE NAV link on scroll
-    const sections = ['hero','training','why','events','gallery','contact'];
+    const sections = ['hero','playing','why','events','gallery','contact'];
     const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
     const sectionObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
