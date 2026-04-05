@@ -1535,6 +1535,8 @@
     }
 
     @media (max-width: 768px) {
+      .container { padding: 0 1.25rem; }
+      .hero-content { padding-top: calc(var(--nav-h) + 1rem); }
       .nav-links { display: none; }
       .hamburger { display: flex; }
       .mobile-menu { display: flex; }
@@ -1544,17 +1546,53 @@
       .what-content { grid-template-columns: 1fr; }
       .rules-grid { grid-template-columns: 1fr 1fr; }
       .rule-card.video-card { grid-column: span 2; }
+
+      /* News cards — horizontal compact layout */
+      .events-grid { grid-template-columns: 1fr; gap: 1rem; }
       .event-card.featured { grid-column: span 1; }
+      .event-card {
+        display: flex;
+        flex-direction: row;
+        border-radius: 14px;
+      }
+      .event-art {
+        width: 110px;
+        min-width: 110px;
+        height: auto;
+        border-radius: 14px 0 0 14px;
+      }
+      .event-card.featured .event-art { height: auto; }
+      .event-date-pill {
+        top: 0.65rem;
+        left: 0.65rem;
+        font-size: 0.6rem;
+        padding: 0.25rem 0.6rem;
+      }
+      .event-body {
+        padding: 0.9rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+      }
+      .event-body h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+      .event-body p { display: none; }
+      .event-footer { margin-top: 0.6rem; padding-top: 0.6rem; }
+      .event-tag { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
+
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:nth-child(1) { grid-column: span 2; }
       .gallery-item:nth-child(5) { grid-column: span 2; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       #playing, #why, #events, #gallery, #contact { padding: 5rem 0; }
+      #sponsor { padding: 4rem 0; }
+      .sponsor-logo { width: 140px; }
     }
 
     @media (max-width: 480px) {
-      .hero-content { padding-top: calc(var(--nav-h) - 16px); padding-bottom: 10rem; }
+      .container { padding: 0 1rem; }
+      .hero-content { padding-top: calc(var(--nav-h) + 1.5rem); padding-bottom: 10rem; }
       .hero-badge { margin-bottom: 0.6rem; }
       .hero-logo { margin-bottom: 0.4rem; }
       .hero-logo img { width: 72vw; border-radius: 18px; }
@@ -1569,6 +1607,16 @@
       .rule-card.video-card { grid-column: span 1; }
       .what-images img:first-child { height: 200px; }
       .what-images img { height: 160px; }
+
+      /* Even more compact news cards */
+      .event-art { width: 90px; min-width: 90px; }
+      .event-body h3 { font-size: 1.1rem; }
+      .event-link { font-size: 0.75rem; }
+
+      .events-header { margin-bottom: 2rem; }
+      .events-header h2 { font-size: 2.4rem; }
+      .sponsor-logo { width: 120px; }
+      .sponsor-logo-wrap { padding: 1.25rem; }
     }
 
     /* ───────────────────────────────── INTRO OVERLAY */
