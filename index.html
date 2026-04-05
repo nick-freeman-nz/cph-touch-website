@@ -430,6 +430,32 @@
       background: rgba(255,255,255,0.07);
     }
 
+    .hero-sponsor {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      animation: fadeInUp 0.9s ease 0.8s both;
+    }
+    .hero-sponsor span {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+    .hero-sponsor img {
+      height: 40px;
+      width: auto;
+      border-radius: 8px;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+    }
+    .hero-sponsor a:hover img { opacity: 1; }
+
     /* scroll indicator */
     .hero-scroll {
       position: absolute;
@@ -1972,6 +1998,12 @@
           Come and Join
         </a>
       </div>
+      <div class="hero-sponsor">
+        <span>Sponsored by</span>
+        <a href="#sponsor">
+          <img src="Kompasset.png" alt="Kompasset" />
+        </a>
+      </div>
     </div>
 
     <div class="hero-scroll">
@@ -2381,7 +2413,7 @@
         <div class="sponsor-text">
           <div class="section-label">Our Sponsor</div>
           <h2 class="section-heading" style="font-size:2.4rem;">Kompasset</h2>
-          <p>Our friends at <strong>Kompasset</strong> keep the post-match vibes going strong. As the official sponsor of CPH Touch, they hook us up with discounted drinks for all club members. Whether it's celebrating a win or drowning a loss — Kompasset is where we head after every session.</p>
+          <p>Our friends at <strong>Kompasset</strong> keep the post-session vibes going strong. As the official sponsor of CPH Touch, they hook us up with discounted drinks for all club members. Whether it's a big win or a tough day on the pitch — Kompasset is where we head after every session.</p>
           <div class="sponsor-cta-row">
             <a href="https://www.instagram.com/kompassetcph?igsh=MTVkNjNlcmhjdWN4eA==" class="btn-primary" target="_blank" rel="noopener">
               Check them out
