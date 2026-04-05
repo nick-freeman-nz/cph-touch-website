@@ -2,8 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CPH Touch | Copenhagen Touch Rugby</title>
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="icon-192.png" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -268,6 +271,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      padding-top: env(safe-area-inset-top, 0px);
     }
 
     #hero-canvas {
@@ -279,7 +283,8 @@
 
     .hero-photo {
       position: absolute;
-      inset: 0;
+      top: calc(-1 * env(safe-area-inset-top, 0px));
+      left: 0; right: 0; bottom: 0;
       background-image: url('CPH Touch Tournament/All Teams.jpg');
       background-size: cover;
       background-position: center 30%;
@@ -288,7 +293,8 @@
     }
     .hero-gradient {
       position: absolute;
-      inset: 0;
+      top: calc(-1 * env(safe-area-inset-top, 0px));
+      left: 0; right: 0; bottom: 0;
       background:
         radial-gradient(ellipse 80% 60% at 60% 40%, rgba(40, 115, 80, 0.35) 0%, transparent 65%),
         radial-gradient(ellipse 50% 50% at 20% 80%, rgba(20, 80, 50, 0.4) 0%, transparent 55%),
