@@ -753,8 +753,9 @@
     }
     .rules-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr) 1.6fr;
       gap: 1.5rem;
+      align-items: stretch;
     }
     .rule-card {
       background: rgba(255,255,255,0.04);
@@ -768,6 +769,27 @@
       background: rgba(82, 183, 136, 0.08);
       border-color: rgba(82, 183, 136, 0.25);
       transform: translateY(-4px);
+    }
+    .rule-card.video-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1.25rem;
+    }
+    .rule-card.video-card h4 { margin-bottom: 0.75rem; }
+    .rule-card.video-card .video-wrap {
+      flex: 1;
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+    }
+    .rule-card.video-card .video-wrap iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      border-radius: 10px;
     }
     .rule-icon {
       width: 52px;
@@ -1437,7 +1459,8 @@
     /* ───────────────────────────────── RESPONSIVE */
     @media (max-width: 1024px) {
       .footer-inner { grid-template-columns: 1fr 1fr; }
-      .rules-grid { grid-template-columns: repeat(2, 1fr); }
+      .rules-grid { grid-template-columns: 1fr 1fr; }
+      .rule-card.video-card { grid-column: span 2; }
       .what-content { grid-template-columns: 1fr; }
       .events-grid { grid-template-columns: 1fr 1fr; }
       .event-card.featured { grid-column: span 2; }
@@ -1452,7 +1475,7 @@
       .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
       .what-content { grid-template-columns: 1fr; }
       .rules-grid { grid-template-columns: 1fr 1fr; }
-      .events-grid { grid-template-columns: 1fr; }
+      .rule-card.video-card { grid-column: span 2; }
       .event-card.featured { grid-column: span 1; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
       .gallery-item:nth-child(1) { grid-column: span 2; }
@@ -1475,6 +1498,7 @@
       .gallery-grid { grid-template-columns: 1fr; }
       .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; }
       .rules-grid { grid-template-columns: 1fr; }
+      .rule-card.video-card { grid-column: span 1; }
       .what-images img:first-child { height: 200px; }
       .what-images img { height: 160px; }
     }
@@ -1827,19 +1851,21 @@
           <p>No tackles, no rucks. A gentle touch is all it takes. Safe for all ages and experience levels.</p>
         </div>
         <div class="rule-card reveal reveal-delay-1">
-          <div class="rule-icon">6️⃣</div>
-          <h4>Six Touches</h4>
-          <p>The attacking team gets six touches to score. After six, possession switches to the other team.</p>
-        </div>
-        <div class="rule-card reveal reveal-delay-2">
           <div class="rule-icon">🔄</div>
           <h4>Rolling Subs</h4>
           <p>Players swap on and off freely throughout the game. Everyone plays, everyone rests — no one sits on the bench.</p>
         </div>
-        <div class="rule-card reveal reveal-delay-3">
+        <div class="rule-card reveal reveal-delay-2">
           <div class="rule-icon">⚡</div>
           <h4>Mixed &amp; Inclusive</h4>
           <p>Played as mixed gender by default. All fitness levels, all backgrounds, all welcome. Speed and smarts beat size every time.</p>
+        </div>
+        <div class="rule-card video-card reveal reveal-delay-3">
+          <div class="rule-icon">🎬</div>
+          <h4>See It in Action</h4>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/4YHjW094-AY" title="How to play Touch Rugby" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+          </div>
         </div>
       </div>
     </div>
