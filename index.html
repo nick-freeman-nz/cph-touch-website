@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.0/css/flag-icons.min.css" />
 
   <style>
     /* ───────────────────────────────── VARIABLES */
@@ -543,12 +544,15 @@
     }
     .flags-track:hover { animation-play-state: paused; }
     .flags-track .flag {
-      font-size: 1.65rem;
-      line-height: 1;
+      display: inline-block;
+      width: 2rem;
+      height: 1.5rem;
+      border-radius: 3px;
       filter: grayscale(15%);
       transition: transform 0.2s ease, filter 0.2s ease;
       cursor: default;
       user-select: none;
+      overflow: hidden;
     }
     .flags-track .flag:hover {
       transform: scale(1.35) translateY(-3px);
@@ -1942,7 +1946,7 @@
           <h2 class="section-heading reveal">When We<br/>Play</h2>
 
           <div class="all-welcome reveal reveal-delay-1">
-            ✦ All levels welcome
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--bright)" stroke="none" style="display:inline-block; vertical-align:-1px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> All levels welcome
           </div>
 
           <p class="reveal reveal-delay-1">
@@ -2030,79 +2034,79 @@
     <div class="flags-strip">
       <div class="flags-track">
         <!-- set 1 -->
-        <span class="flag" title="Denmark">🇩🇰</span>
-        <span class="flag" title="United Kingdom">🇬🇧</span>
-        <span class="flag" title="Australia">🇦🇺</span>
-        <span class="flag" title="New Zealand">🇳🇿</span>
-        <span class="flag" title="South Africa">🇿🇦</span>
-        <span class="flag" title="Ireland">🇮🇪</span>
-        <span class="flag" title="France">🇫🇷</span>
-        <span class="flag" title="Germany">🇩🇪</span>
-        <span class="flag" title="Netherlands">🇳🇱</span>
-        <span class="flag" title="Sweden">🇸🇪</span>
-        <span class="flag" title="Norway">🇳🇴</span>
-        <span class="flag" title="Finland">🇫🇮</span>
-        <span class="flag" title="USA">🇺🇸</span>
-        <span class="flag" title="Canada">🇨🇦</span>
-        <span class="flag" title="Brazil">🇧🇷</span>
-        <span class="flag" title="Argentina">🇦🇷</span>
-        <span class="flag" title="India">🇮🇳</span>
-        <span class="flag" title="Japan">🇯🇵</span>
-        <span class="flag" title="Portugal">🇵🇹</span>
-        <span class="flag" title="Spain">🇪🇸</span>
-        <span class="flag" title="Italy">🇮🇹</span>
-        <span class="flag" title="Belgium">🇧🇪</span>
-        <span class="flag" title="Poland">🇵🇱</span>
-        <span class="flag" title="Romania">🇷🇴</span>
-        <span class="flag" title="Greece">🇬🇷</span>
-        <span class="flag" title="Switzerland">🇨🇭</span>
-        <span class="flag" title="Czech Republic">🇨🇿</span>
-        <span class="flag" title="Ukraine">🇺🇦</span>
-        <span class="flag" title="Philippines">🇵🇭</span>
-        <span class="flag" title="Singapore">🇸🇬</span>
-        <span class="flag" title="Kenya">🇰🇪</span>
-        <span class="flag" title="Nigeria">🇳🇬</span>
-        <span class="flag" title="Mexico">🇲🇽</span>
-        <span class="flag" title="Chile">🇨🇱</span>
-        <span class="flag" title="Israel">🇮🇱</span>
-        <span class="flag" title="United Arab Emirates">🇦🇪</span>
+        <span class="flag fi fi-dk" title="Denmark"></span>
+        <span class="flag fi fi-gb" title="United Kingdom"></span>
+        <span class="flag fi fi-au" title="Australia"></span>
+        <span class="flag fi fi-nz" title="New Zealand"></span>
+        <span class="flag fi fi-za" title="South Africa"></span>
+        <span class="flag fi fi-ie" title="Ireland"></span>
+        <span class="flag fi fi-fr" title="France"></span>
+        <span class="flag fi fi-de" title="Germany"></span>
+        <span class="flag fi fi-nl" title="Netherlands"></span>
+        <span class="flag fi fi-se" title="Sweden"></span>
+        <span class="flag fi fi-no" title="Norway"></span>
+        <span class="flag fi fi-fi" title="Finland"></span>
+        <span class="flag fi fi-us" title="USA"></span>
+        <span class="flag fi fi-ca" title="Canada"></span>
+        <span class="flag fi fi-br" title="Brazil"></span>
+        <span class="flag fi fi-ar" title="Argentina"></span>
+        <span class="flag fi fi-in" title="India"></span>
+        <span class="flag fi fi-jp" title="Japan"></span>
+        <span class="flag fi fi-pt" title="Portugal"></span>
+        <span class="flag fi fi-es" title="Spain"></span>
+        <span class="flag fi fi-it" title="Italy"></span>
+        <span class="flag fi fi-be" title="Belgium"></span>
+        <span class="flag fi fi-pl" title="Poland"></span>
+        <span class="flag fi fi-ro" title="Romania"></span>
+        <span class="flag fi fi-gr" title="Greece"></span>
+        <span class="flag fi fi-ch" title="Switzerland"></span>
+        <span class="flag fi fi-cz" title="Czech Republic"></span>
+        <span class="flag fi fi-ua" title="Ukraine"></span>
+        <span class="flag fi fi-ph" title="Philippines"></span>
+        <span class="flag fi fi-sg" title="Singapore"></span>
+        <span class="flag fi fi-ke" title="Kenya"></span>
+        <span class="flag fi fi-ng" title="Nigeria"></span>
+        <span class="flag fi fi-mx" title="Mexico"></span>
+        <span class="flag fi fi-cl" title="Chile"></span>
+        <span class="flag fi fi-il" title="Israel"></span>
+        <span class="flag fi fi-ae" title="United Arab Emirates"></span>
         <!-- set 2 — identical copy for seamless loop -->
-        <span class="flag" title="Denmark">🇩🇰</span>
-        <span class="flag" title="United Kingdom">🇬🇧</span>
-        <span class="flag" title="Australia">🇦🇺</span>
-        <span class="flag" title="New Zealand">🇳🇿</span>
-        <span class="flag" title="South Africa">🇿🇦</span>
-        <span class="flag" title="Ireland">🇮🇪</span>
-        <span class="flag" title="France">🇫🇷</span>
-        <span class="flag" title="Germany">🇩🇪</span>
-        <span class="flag" title="Netherlands">🇳🇱</span>
-        <span class="flag" title="Sweden">🇸🇪</span>
-        <span class="flag" title="Norway">🇳🇴</span>
-        <span class="flag" title="Finland">🇫🇮</span>
-        <span class="flag" title="USA">🇺🇸</span>
-        <span class="flag" title="Canada">🇨🇦</span>
-        <span class="flag" title="Brazil">🇧🇷</span>
-        <span class="flag" title="Argentina">🇦🇷</span>
-        <span class="flag" title="India">🇮🇳</span>
-        <span class="flag" title="Japan">🇯🇵</span>
-        <span class="flag" title="Portugal">🇵🇹</span>
-        <span class="flag" title="Spain">🇪🇸</span>
-        <span class="flag" title="Italy">🇮🇹</span>
-        <span class="flag" title="Belgium">🇧🇪</span>
-        <span class="flag" title="Poland">🇵🇱</span>
-        <span class="flag" title="Romania">🇷🇴</span>
-        <span class="flag" title="Greece">🇬🇷</span>
-        <span class="flag" title="Switzerland">🇨🇭</span>
-        <span class="flag" title="Czech Republic">🇨🇿</span>
-        <span class="flag" title="Ukraine">🇺🇦</span>
-        <span class="flag" title="Philippines">🇵🇭</span>
-        <span class="flag" title="Singapore">🇸🇬</span>
-        <span class="flag" title="Kenya">🇰🇪</span>
-        <span class="flag" title="Nigeria">🇳🇬</span>
-        <span class="flag" title="Mexico">🇲🇽</span>
-        <span class="flag" title="Chile">🇨🇱</span>
-        <span class="flag" title="Israel">🇮🇱</span>
-        <span class="flag" title="United Arab Emirates">🇦🇪</span>
+        <span class="flag fi fi-dk" title="Denmark"></span>
+        <span class="flag fi fi-gb" title="United Kingdom"></span>
+        <span class="flag fi fi-au" title="Australia"></span>
+        <span class="flag fi fi-nz" title="New Zealand"></span>
+        <span class="flag fi fi-za" title="South Africa"></span>
+        <span class="flag fi fi-ie" title="Ireland"></span>
+        <span class="flag fi fi-fr" title="France"></span>
+        <span class="flag fi fi-de" title="Germany"></span>
+        <span class="flag fi fi-nl" title="Netherlands"></span>
+        <span class="flag fi fi-se" title="Sweden"></span>
+        <span class="flag fi fi-no" title="Norway"></span>
+        <span class="flag fi fi-fi" title="Finland"></span>
+        <span class="flag fi fi-us" title="USA"></span>
+        <span class="flag fi fi-ca" title="Canada"></span>
+        <span class="flag fi fi-br" title="Brazil"></span>
+        <span class="flag fi fi-ar" title="Argentina"></span>
+        <span class="flag fi fi-in" title="India"></span>
+        <span class="flag fi fi-jp" title="Japan"></span>
+        <span class="flag fi fi-pt" title="Portugal"></span>
+        <span class="flag fi fi-es" title="Spain"></span>
+        <span class="flag fi fi-it" title="Italy"></span>
+        <span class="flag fi fi-be" title="Belgium"></span>
+        <span class="flag fi fi-pl" title="Poland"></span>
+        <span class="flag fi fi-ro" title="Romania"></span>
+        <span class="flag fi fi-gr" title="Greece"></span>
+        <span class="flag fi fi-ch" title="Switzerland"></span>
+        <span class="flag fi fi-cz" title="Czech Republic"></span>
+        <span class="flag fi fi-ua" title="Ukraine"></span>
+        <span class="flag fi fi-ph" title="Philippines"></span>
+        <span class="flag fi fi-sg" title="Singapore"></span>
+        <span class="flag fi fi-ke" title="Kenya"></span>
+        <span class="flag fi fi-ng" title="Nigeria"></span>
+        <span class="flag fi fi-mx" title="Mexico"></span>
+        <span class="flag fi fi-cl" title="Chile"></span>
+        <span class="flag fi fi-il" title="Israel"></span>
+        <span class="flag fi fi-ae" title="United Arab Emirates"></span>
       </div>
     </div>
 
@@ -2133,22 +2137,22 @@
 
       <div class="rules-grid">
         <div class="rule-card reveal">
-          <div class="rule-icon">🤝</div>
+          <div class="rule-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
           <h4>Non-Contact</h4>
           <p>No tackles, no rucks. A gentle touch is all it takes. Safe for all ages and experience levels.</p>
         </div>
         <div class="rule-card reveal reveal-delay-1">
-          <div class="rule-icon">🔄</div>
+          <div class="rule-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg></div>
           <h4>Rolling Subs</h4>
           <p>Players swap on and off freely throughout the game. Everyone plays, everyone rests — no one sits on the bench.</p>
         </div>
         <div class="rule-card reveal reveal-delay-2">
-          <div class="rule-icon">⚡</div>
+          <div class="rule-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <h4>Mixed &amp; Inclusive</h4>
           <p>Played as mixed gender by default. All fitness levels, all backgrounds, all welcome. Speed and smarts beat size every time.</p>
         </div>
         <div class="rule-card video-card reveal reveal-delay-3">
-          <div class="rule-icon">🎬</div>
+          <div class="rule-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="var(--white)" stroke="none"/></svg></div>
           <h4>See It in Action</h4>
           <div class="video-wrap">
             <iframe src="https://www.youtube.com/embed/4YHjW094-AY" title="How to play Touch Rugby" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
@@ -2183,7 +2187,7 @@
             <h3>Summer League Starts May!</h3>
             <p>Our summer league is back for 2026! Teams, round-robin fixtures, and bragging rights on the line every week in Fælledparken. Open to all skill levels — form a team or join as an individual and we'll sort you out.</p>
             <div class="event-footer">
-              <span class="event-tag">🏆 League</span>
+              <span class="event-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 9a6 6 0 1 1 12 0c0 3.1-2.3 6.5-6 10.3C8.3 15.5 6 12.1 6 9zm6-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg> League</span>
               <a href="mailto:copenhagentouchrugby@gmail.com?subject=Summer%20League%202026%20—%20Register%20Interest" class="event-link">
                 Register interest
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -2205,7 +2209,7 @@
             <h3>North vs South — The Rematch</h3>
             <p>The annual North vs South showdown returns in September. Last time out, the Norths took the title — can the South hit back in 2026? One of the highlights of the Danish touch calendar.</p>
             <div class="event-footer">
-              <span class="event-tag">🏉 National</span>
+              <span class="event-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 9a6 6 0 1 1 12 0c0 3.1-2.3 6.5-6 10.3C8.3 15.5 6 12.1 6 9zm6-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg> National</span>
               <a href="mailto:copenhagentouchrugby@gmail.com?subject=North%20vs%20South%202026%20—%20Register%20Interest" class="event-link">
                 Register interest
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -2227,7 +2231,7 @@
             <h3>Summer Sessions Are Back!</h3>
             <p>Wednesday sessions are back! We're now running our summer schedule with sessions on both Sundays (10:30) and Wednesdays (17:30) in Fælledparken.</p>
             <div class="event-footer">
-              <span class="event-tag">🏉 Training</span>
+              <span class="event-tag"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 9a6 6 0 1 1 12 0c0 3.1-2.3 6.5-6 10.3C8.3 15.5 6 12.1 6 9zm6-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg> Sessions</span>
               <a href="blog.html" class="event-link">
                 Read more
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
@@ -2364,21 +2368,21 @@
 
           <div class="contact-details reveal reveal-delay-1">
             <div class="contact-detail">
-              <div class="contact-detail-icon">📧</div>
+              <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
               <div class="contact-detail-text">
                 <strong>Email</strong>
                 <span>copenhagentouchrugby@gmail.com</span>
               </div>
             </div>
             <div class="contact-detail">
-              <div class="contact-detail-icon">📍</div>
+              <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
               <div class="contact-detail-text">
                 <strong>Location</strong>
                 <span>Fælledparken, Copenhagen</span>
               </div>
             </div>
             <div class="contact-detail">
-              <div class="contact-detail-icon">🗓️</div>
+              <div class="contact-detail-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
               <div class="contact-detail-text">
                 <strong>Sessions</strong>
                 <span>Sunday 10:30 &amp; Wednesday 17:30</span>
@@ -2476,7 +2480,7 @@
 
       <div class="footer-bottom">
         <p>© 2026 <strong>CPH Touch Rugby Club</strong>. All rights reserved.</p>
-        <p>Made with ❤️ in Copenhagen</p>
+        <p>Made with <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--bright)" stroke="none" style="display:inline-block; vertical-align:-2px;"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> in Copenhagen</p>
       </div>
     </div>
   </footer>
