@@ -280,7 +280,7 @@
     .hero-photo {
       position: absolute;
       inset: 0;
-      background-image: url('Touchtober 2025/Teamphoto.jpg');
+      background-image: url('CPH Touch Tournament/All Teams.jpg');
       background-size: cover;
       background-position: center 30%;
       opacity: 0.26;
@@ -1050,21 +1050,18 @@
     }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: auto auto;
-      gap: 1rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
     }
     .gallery-item {
       border-radius: var(--radius);
       overflow: hidden;
       position: relative;
       cursor: pointer;
+      aspect-ratio: 4/3;
     }
-    .gallery-item:nth-child(1) { grid-column: span 2; aspect-ratio: 16/9; }
-    .gallery-item:nth-child(2) { aspect-ratio: 4/5; }
-    .gallery-item:nth-child(3) { aspect-ratio: 4/5; }
-    .gallery-item:nth-child(4) { aspect-ratio: 4/5; }
-    .gallery-item:nth-child(5) { grid-column: span 2; aspect-ratio: 16/9; }
+    .gallery-item:nth-child(1) { grid-column: span 2; }
+    .gallery-item:nth-child(8) { grid-column: span 2; }
 
     .gallery-bg {
       position: absolute;
@@ -1606,9 +1603,9 @@
       .event-footer { margin-top: 0.6rem; padding-top: 0.6rem; }
       .event-tag { font-size: 0.65rem; padding: 0.2rem 0.55rem; }
 
-      .gallery-grid { grid-template-columns: 1fr 1fr; }
-      .gallery-item:nth-child(1) { grid-column: span 2; }
-      .gallery-item:nth-child(5) { grid-column: span 2; }
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 1; }
+      .gallery-item:nth-child(8) { grid-column: span 1; }
       .stats-inner { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; }
       #playing, #why, #events, #gallery, #contact { padding: 5rem 0; }
@@ -1627,8 +1624,8 @@
       .stats-inner { grid-template-columns: 1fr 1fr; }
       .stat-item { padding: 1.75rem 1rem; }
       .footer-inner { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
-      .gallery-item:nth-child(1), .gallery-item:nth-child(5) { grid-column: span 1; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:nth-child(1), .gallery-item:nth-child(8) { grid-column: span 1; }
       .rules-grid { grid-template-columns: 1fr; }
       .rule-card.video-card { grid-column: span 1; }
       .what-images img:first-child { height: 200px; }
@@ -2345,6 +2342,56 @@
 
       <div class="gallery-grid">
         <div class="gallery-item reveal">
+          <img src="CPH Touch Tournament/All Teams.jpg" class="gallery-bg" alt="All teams at CPH Touch Tournament" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>CPH Touch Tournament</span>
+              All Teams
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1">
+          <img src="CPH Touch Tournament/CPH-Touch_Hi-037.jpg" class="gallery-bg" alt="Tournament action" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>CPH Touch Tournament</span>
+              Game On
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-2">
+          <img src="CPH Touch Tournament/CPH-Touch_Hi-043.jpg" class="gallery-bg" alt="Tournament action" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>CPH Touch Tournament</span>
+              On the Attack
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-3">
+          <img src="CPH Touch Tournament/CPH-Touch_Hi-052.jpg" class="gallery-bg" alt="Tournament action" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>CPH Touch Tournament</span>
+              In the Zone
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
+          <img src="CPH Touch Tournament/CPH-Touch_Hi-061.jpg" class="gallery-bg" alt="Tournament action" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>CPH Touch Tournament</span>
+              Touch Down
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-1">
           <img src="Touchtober 2025/54849837331_969c2b4e17_k.jpg" class="gallery-bg" alt="Action on the pitch" />
           <div class="gallery-overlay">
             <div class="gallery-caption">
@@ -2354,7 +2401,7 @@
           </div>
         </div>
 
-        <div class="gallery-item reveal reveal-delay-1">
+        <div class="gallery-item reveal reveal-delay-2">
           <img src="Touchtober 2025/54839533143_1596b98d09_k.jpg" class="gallery-bg" alt="Player in action" />
           <div class="gallery-overlay">
             <div class="gallery-caption">
@@ -2364,7 +2411,17 @@
           </div>
         </div>
 
-        <div class="gallery-item reveal reveal-delay-2">
+        <div class="gallery-item reveal reveal-delay-3">
+          <img src="Touchtober 2025/Teamphoto.jpg" class="gallery-bg" alt="Touchtober team photo" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              The Squad
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal">
           <img src="Touchtober 2025/54839533198_f2fd5d3fcf_k.jpg" class="gallery-bg" alt="Player on the pitch" />
           <div class="gallery-overlay">
             <div class="gallery-caption">
@@ -2374,7 +2431,7 @@
           </div>
         </div>
 
-        <div class="gallery-item reveal reveal-delay-3">
+        <div class="gallery-item reveal reveal-delay-1">
           <img src="Touchtober 2025/54849841541_a5a553b633_k.jpg" class="gallery-bg" alt="Team enjoying the game" />
           <div class="gallery-overlay">
             <div class="gallery-caption">
@@ -2384,12 +2441,22 @@
           </div>
         </div>
 
-        <div class="gallery-item reveal">
+        <div class="gallery-item reveal reveal-delay-2">
           <img src="Touchtober 2025/54850083454_5ab023b10c_k.jpg" class="gallery-bg" alt="Full squad photo" />
           <div class="gallery-overlay">
             <div class="gallery-caption">
               <span>Touchtober 2025</span>
-              The Full Squad
+              Full Squad
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal reveal-delay-3">
+          <img src="Touchtober 2025/54850087189_77823a8083_k.jpg" class="gallery-bg" alt="Touch rugby game" />
+          <div class="gallery-overlay">
+            <div class="gallery-caption">
+              <span>Touchtober 2025</span>
+              In Play
             </div>
           </div>
         </div>
