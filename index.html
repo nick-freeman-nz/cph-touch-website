@@ -1559,6 +1559,229 @@
     #intro-sub.show {
       color: rgba(255, 255, 255, 0.32);
     }
+
+    /* ───────────────────────────────── CALENDAR SIDEBAR */
+    #cal-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 900;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--bright));
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+    }
+    #cal-fab:hover { transform: scale(1.1); box-shadow: 0 6px 32px rgba(0,0,0,0.5); }
+    #cal-fab svg { width: 26px; height: 26px; }
+
+    #cal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 950;
+      background: rgba(0,0,0,0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    #cal-overlay.open { opacity: 1; pointer-events: all; }
+
+    #cal-sidebar {
+      position: fixed;
+      top: 0; right: 0; bottom: 0;
+      z-index: 960;
+      width: min(400px, 90vw);
+      background: var(--forest);
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+      overflow-y: auto;
+    }
+    #cal-sidebar.open { transform: translateX(0); }
+
+    .cal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 1.5rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .cal-header h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin: 0;
+    }
+    .cal-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .cal-close:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+
+    .cal-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem 0.5rem;
+    }
+    .cal-nav-btn {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .cal-nav-btn:hover { background: rgba(82,183,136,0.2); color: var(--bright); }
+    .cal-month-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+      padding: 0.5rem 1.5rem 1rem;
+    }
+    .cal-day-name {
+      text-align: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      padding: 0.4rem 0;
+    }
+    .cal-day {
+      position: relative;
+      text-align: center;
+      padding: 0.45rem 0;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.45);
+      border-radius: 8px;
+      cursor: default;
+      transition: background 0.2s;
+    }
+    .cal-day.empty { visibility: hidden; }
+    .cal-day.today {
+      color: var(--white);
+      font-weight: 700;
+      background: rgba(82,183,136,0.2);
+    }
+    .cal-day.has-event {
+      cursor: pointer;
+      color: rgba(255,255,255,0.8);
+    }
+    .cal-day.has-event:hover { background: rgba(82,183,136,0.15); }
+    .cal-day.selected { background: rgba(82,183,136,0.25); color: var(--white); }
+    .cal-dot-row {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      margin-top: 2px;
+      min-height: 6px;
+    }
+    .cal-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+    }
+    .cal-dot.training { background: var(--bright); }
+    .cal-dot.event { background: var(--gold); }
+
+    .cal-legend {
+      display: flex;
+      gap: 1.25rem;
+      padding: 0 1.5rem 0.75rem;
+    }
+    .cal-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .cal-legend-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .cal-events {
+      flex: 1;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .cal-events-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.75rem;
+    }
+    .cal-event-item {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      margin-bottom: 0.6rem;
+      transition: border-color 0.2s;
+    }
+    .cal-event-item:hover { border-color: rgba(82,183,136,0.25); }
+    .cal-event-item .cal-ev-type {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--bright);
+      margin-bottom: 0.2rem;
+    }
+    .cal-event-item.gold .cal-ev-type { color: var(--gold); }
+    .cal-event-item .cal-ev-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .cal-event-item .cal-ev-detail {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 0.15rem;
+    }
+    .cal-no-events {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.88rem;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -2162,6 +2385,31 @@
     </div>
   </footer>
 
+  <!-- ═══════════════════════ CALENDAR SIDEBAR -->
+  <button id="cal-fab" aria-label="Open calendar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </svg>
+  </button>
+  <div id="cal-overlay"></div>
+  <div id="cal-sidebar">
+    <div class="cal-header">
+      <h3>📅 Calendar</h3>
+      <button class="cal-close" id="cal-close" aria-label="Close calendar">&times;</button>
+    </div>
+    <div class="cal-nav">
+      <button class="cal-nav-btn" id="cal-prev" aria-label="Previous month">‹</button>
+      <span class="cal-month-label" id="cal-month-label"></span>
+      <button class="cal-nav-btn" id="cal-next" aria-label="Next month">›</button>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-legend">
+      <div class="cal-legend-item"><span class="cal-legend-dot" style="background:var(--bright)"></span> Training</div>
+      <div class="cal-legend-item"><span class="cal-legend-dot" style="background:var(--gold)"></span> Event</div>
+    </div>
+    <div class="cal-events" id="cal-events"></div>
+  </div>
+
   <!-- ═══════════════════════ SCRIPTS -->
   <script>
     // ── INTRO ANIMATION
@@ -2367,6 +2615,162 @@
       const el = document.getElementById(id);
       if (el) sectionObserver.observe(el);
     });
+
+    // ── CALENDAR SIDEBAR
+    (function () {
+      const EVENTS = [
+        { date: '2026-05-01', name: 'Summer League Starts!', type: 'League', detail: 'Weekly round-robin in Fælledparken', color: 'gold' },
+        { date: '2026-09-01', name: 'North vs South', type: 'Tournament', detail: 'Annual North vs South showdown', color: 'gold' },
+        { date: '2026-10-01', name: 'Touchtober 2026', type: 'Tournament', detail: 'Our flagship tournament', color: 'gold' },
+      ];
+
+      const TRAINING = [
+        { day: 0, name: 'Sunday Training', time: '10:30', location: 'Fælledparken' },
+        { day: 3, name: 'Wednesday Training', time: '17:30', location: 'Fælledparken' },
+      ];
+
+      const fab     = document.getElementById('cal-fab');
+      const overlay = document.getElementById('cal-overlay');
+      const sidebar = document.getElementById('cal-sidebar');
+      const closeBtn= document.getElementById('cal-close');
+      const prevBtn = document.getElementById('cal-prev');
+      const nextBtn = document.getElementById('cal-next');
+      const label   = document.getElementById('cal-month-label');
+      const grid    = document.getElementById('cal-grid');
+      const eventsEl= document.getElementById('cal-events');
+
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const DAYS   = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+      const today  = new Date();
+      let viewYear = today.getFullYear();
+      let viewMonth = today.getMonth();
+      let selectedDate = null;
+
+      function open()  { sidebar.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function close() { sidebar.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+      fab.addEventListener('click', open);
+      overlay.addEventListener('click', close);
+      closeBtn.addEventListener('click', close);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+      prevBtn.addEventListener('click', () => { viewMonth--; if (viewMonth < 0) { viewMonth = 11; viewYear--; } selectedDate = null; render(); });
+      nextBtn.addEventListener('click', () => { viewMonth++; if (viewMonth > 11) { viewMonth = 0; viewYear++; } selectedDate = null; render(); });
+
+      function eventsForDate(y, m, d) {
+        const dateStr = `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+        const dt = new Date(y, m, d);
+        const dow = dt.getDay();
+        const items = [];
+        TRAINING.forEach(t => { if (t.day === dow) items.push({ ...t, type: 'Training', isTraining: true }); });
+        EVENTS.forEach(ev => { if (ev.date === dateStr) items.push({ ...ev, isTraining: false }); });
+        return items;
+      }
+
+      function render() {
+        label.textContent = `${MONTHS[viewMonth]} ${viewYear}`;
+        grid.innerHTML = '';
+
+        DAYS.forEach(d => {
+          const el = document.createElement('div');
+          el.className = 'cal-day-name';
+          el.textContent = d;
+          grid.appendChild(el);
+        });
+
+        const first = new Date(viewYear, viewMonth, 1);
+        let startDay = first.getDay() - 1;
+        if (startDay < 0) startDay = 6;
+        const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+        for (let i = 0; i < startDay; i++) {
+          const el = document.createElement('div');
+          el.className = 'cal-day empty';
+          grid.appendChild(el);
+        }
+
+        for (let d = 1; d <= daysInMonth; d++) {
+          const el = document.createElement('div');
+          el.className = 'cal-day';
+          const items = eventsForDate(viewYear, viewMonth, d);
+          const isToday = d === today.getDate() && viewMonth === today.getMonth() && viewYear === today.getFullYear();
+          if (isToday) el.classList.add('today');
+          if (items.length) el.classList.add('has-event');
+          if (selectedDate === d) el.classList.add('selected');
+
+          const num = document.createElement('div');
+          num.textContent = d;
+          el.appendChild(num);
+
+          const dots = document.createElement('div');
+          dots.className = 'cal-dot-row';
+          const hasTraining = items.some(i => i.isTraining);
+          const hasEvent = items.some(i => !i.isTraining);
+          if (hasTraining) { const dot = document.createElement('span'); dot.className = 'cal-dot training'; dots.appendChild(dot); }
+          if (hasEvent) { const dot = document.createElement('span'); dot.className = 'cal-dot event'; dots.appendChild(dot); }
+          el.appendChild(dots);
+
+          if (items.length) {
+            el.addEventListener('click', () => { selectedDate = d; render(); });
+          }
+          grid.appendChild(el);
+        }
+
+        renderEvents();
+      }
+
+      function renderEvents() {
+        eventsEl.innerHTML = '';
+        const title = document.createElement('div');
+        title.className = 'cal-events-title';
+
+        if (selectedDate) {
+          const items = eventsForDate(viewYear, viewMonth, selectedDate);
+          const dt = new Date(viewYear, viewMonth, selectedDate);
+          title.textContent = dt.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+          eventsEl.appendChild(title);
+          if (!items.length) {
+            const none = document.createElement('div');
+            none.className = 'cal-no-events';
+            none.textContent = 'Nothing scheduled';
+            eventsEl.appendChild(none);
+          } else {
+            items.forEach(item => {
+              const card = document.createElement('div');
+              card.className = 'cal-event-item' + (item.isTraining ? '' : ' gold');
+              card.innerHTML = `
+                <div class="cal-ev-type">${item.type}</div>
+                <div class="cal-ev-name">${item.name}</div>
+                <div class="cal-ev-detail">${item.time ? item.time + ' · ' + item.location : item.detail}</div>`;
+              eventsEl.appendChild(card);
+            });
+          }
+        } else {
+          title.textContent = `Upcoming in ${MONTHS[viewMonth]}`;
+          eventsEl.appendChild(title);
+          const monthEvents = EVENTS.filter(ev => {
+            const [ey, em] = ev.date.split('-').map(Number);
+            return ey === viewYear && em === viewMonth + 1;
+          });
+          if (!monthEvents.length) {
+            const none = document.createElement('div');
+            none.className = 'cal-no-events';
+            none.textContent = 'No special events this month — training continues as usual!';
+            eventsEl.appendChild(none);
+          }
+          monthEvents.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'cal-event-item gold';
+            card.innerHTML = `
+              <div class="cal-ev-type">${item.type}</div>
+              <div class="cal-ev-name">${item.name}</div>
+              <div class="cal-ev-detail">${item.detail}</div>`;
+            eventsEl.appendChild(card);
+          });
+        }
+      }
+
+      render();
+    })();
 
   </script>
 </body>
