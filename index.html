@@ -1565,7 +1565,7 @@
       position: fixed;
       bottom: 2rem;
       right: 2rem;
-      z-index: 900;
+      z-index: 1100;
       width: 56px;
       height: 56px;
       border-radius: 50%;
@@ -1585,7 +1585,7 @@
     #cal-overlay {
       position: fixed;
       inset: 0;
-      z-index: 950;
+      z-index: 1100;
       background: rgba(0,0,0,0.45);
       opacity: 0;
       pointer-events: none;
@@ -1596,7 +1596,7 @@
     #cal-sidebar {
       position: fixed;
       top: 0; right: 0; bottom: 0;
-      z-index: 960;
+      z-index: 1101;
       width: min(400px, 90vw);
       background: var(--forest);
       transform: translateX(100%);
@@ -2394,7 +2394,7 @@
   <div id="cal-overlay"></div>
   <div id="cal-sidebar">
     <div class="cal-header">
-      <h3>📅 Calendar</h3>
+      <h3>Calendar</h3>
       <button class="cal-close" id="cal-close" aria-label="Close calendar">&times;</button>
     </div>
     <div class="cal-nav">
@@ -2404,7 +2404,7 @@
     </div>
     <div class="cal-grid" id="cal-grid"></div>
     <div class="cal-legend">
-      <div class="cal-legend-item"><span class="cal-legend-dot" style="background:var(--bright)"></span> Training</div>
+      <div class="cal-legend-item"><span class="cal-legend-dot" style="background:var(--bright)"></span> Session</div>
       <div class="cal-legend-item"><span class="cal-legend-dot" style="background:var(--gold)"></span> Event</div>
     </div>
     <div class="cal-events" id="cal-events"></div>
@@ -2619,14 +2619,21 @@
     // ── CALENDAR SIDEBAR
     (function () {
       const EVENTS = [
-        { date: '2026-05-01', name: 'Summer League Starts!', type: 'League', detail: 'Weekly round-robin in Fælledparken', color: 'gold' },
-        { date: '2026-09-01', name: 'North vs South', type: 'Tournament', detail: 'Annual North vs South showdown', color: 'gold' },
-        { date: '2026-10-01', name: 'Touchtober 2026', type: 'Tournament', detail: 'Our flagship tournament', color: 'gold' },
+        { date: '2026-05-06', name: 'League Night', type: 'League', detail: 'First Wednesday of the month · Fælledparken', color: 'gold' },
+        { date: '2026-06-03', name: 'League Night', type: 'League', detail: 'First Wednesday of the month · Fælledparken', color: 'gold' },
+        { date: '2026-07-01', name: 'League Night', type: 'League', detail: 'First Wednesday of the month · Fælledparken', color: 'gold' },
+        { date: '2026-07-21', name: 'Touch Euros', type: 'Tournament', detail: '21–25 July · European Championships', color: 'gold' },
+        { date: '2026-07-22', name: 'Touch Euros', type: 'Tournament', detail: '21–25 July · European Championships', color: 'gold' },
+        { date: '2026-07-23', name: 'Touch Euros', type: 'Tournament', detail: '21–25 July · European Championships', color: 'gold' },
+        { date: '2026-07-24', name: 'Touch Euros', type: 'Tournament', detail: '21–25 July · European Championships', color: 'gold' },
+        { date: '2026-07-25', name: 'Touch Euros', type: 'Tournament', detail: '21–25 July · European Championships', color: 'gold' },
+        { date: '2026-08-05', name: 'League Night', type: 'League', detail: 'First Wednesday of the month · Fælledparken', color: 'gold' },
+        { date: '2026-09-02', name: 'League Night', type: 'League', detail: 'First Wednesday of the month · Fælledparken', color: 'gold' },
       ];
 
       const TRAINING = [
-        { day: 0, name: 'Sunday Training', time: '10:30', location: 'Fælledparken' },
-        { day: 3, name: 'Wednesday Training', time: '17:30', location: 'Fælledparken' },
+        { day: 0, name: 'Sunday Session', time: '10:30', location: 'Fælledparken' },
+        { day: 3, name: 'Wednesday Session', time: '17:30', location: 'Fælledparken' },
       ];
 
       const fab     = document.getElementById('cal-fab');
@@ -2661,7 +2668,7 @@
         const dt = new Date(y, m, d);
         const dow = dt.getDay();
         const items = [];
-        TRAINING.forEach(t => { if (t.day === dow) items.push({ ...t, type: 'Training', isTraining: true }); });
+        TRAINING.forEach(t => { if (t.day === dow) items.push({ ...t, type: 'Session', isTraining: true }); });
         EVENTS.forEach(ev => { if (ev.date === dateStr) items.push({ ...ev, isTraining: false }); });
         return items;
       }
